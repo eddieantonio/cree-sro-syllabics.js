@@ -1,0 +1,29 @@
+{
+  "name": "cree-sro-syllabics",
+  "version": "2018.11.12-alpha",
+  "description": "Convert Western Cree SRO to syllabics",
+  "main": "cree_sro_syllabics.js",
+  "scripts": {
+    "test": "ava test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eddieantonio/cree-sro-syllabics.js.git"
+  },
+  "keywords": [
+    "cree",
+    "syllabics",
+    "sro",
+    "nêhiyawêwin"
+  ],
+  "author": "Eddie Antonio Santos (easantos@ualberta.ca)",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/eddieantonio/cree-sro-syllabics.js/issues"
+  },
+  "homepage": "https://github.com/eddieantonio/cree-sro-syllabics.js#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^0.25.0"
+  }
+}
