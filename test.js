@@ -13,8 +13,8 @@ test('"nêhiyawêwin" → syllabics', convertRoundTrip, 'nêhiyawêwin', 'ᓀᐦ
 test('"tirêyl" → syllabics', convertRoundTrip, 'tirêyl', 'ᑎᕒᐁᕀᓬ')
 
 /* Spelling relaxation tests. */
-test('"Tân\'si" → syllabics', convertToSRO, "Tân'si", 'ᑖᓂᓯ')
-test('"Maskekosihk" → syllabics', convertToSRO, 'Maskekosihk', 'ᒪᐢᑫᑯᓯᕽ')
+test('"Tân\'si" → syllabics', convertToSyllabics, "Tân'si", 'ᑖᓂᓯ')
+test('"Maskekosihk" → syllabics', convertToSyllabics, 'Maskekosihk', 'ᒪᐢᑫᑯᓯᕽ')
 
 test('Unicode normalization', t => {
   let water = 'nipiy'
@@ -31,7 +31,7 @@ test('word matching', convertSemiRoundTrip, 'obviously english text', 'obviously
 test('word matching', convertSemiRoundTrip, 'write nêhiyawêwin', 'write ᓀᐦᐃᔭᐍᐏᐣ')
 test('word matching', convertSemiRoundTrip, '\t namoya  tataspêyihtam. ', '\t ᓇᒧᔭ  ᑕᑕᐢᐯᔨᐦᑕᒼ᙮ ')
 
-test('alternate y-final', convertToSyllabics, 'ᓰᐱᐝ', 'sîpiy')
+test('alternate y-final', convertToSRO, 'ᓰᐱᐝ', 'sîpiy')
 
 test('test macrons', convertSemiRoundTripWithMacrons, 'yōtinipēstāw', 'ᔫᑎᓂᐯᐢᑖᐤ')
 test('test macrons', convertSemiRoundTripWithMacrons, 'īkatē', 'ᐄᑲᑌ')
@@ -41,6 +41,12 @@ test('"paskwâwi-mostos" → syllabics', convertRoundTrip, 'paskwâwi-mostos', '
 test('"amiskwaciy-waskahikan" → syllabics', convertRoundTrip, 'amiskwaciy-waskahikan', 'ᐊᒥᐢᑿᒋᕀ ᐘᐢᑲᐦᐃᑲᐣ')
 test('"kâ-mahihkani-pimohtêt isiyihkâsow" → syllabics', convertRoundTrip,
   'kâ-mahihkani-pimohtêt isiyihkâsow', 'ᑳ ᒪᐦᐃᐦᑲᓂ ᐱᒧᐦᑌᐟ ᐃᓯᔨᐦᑳᓱᐤ')
+
+/* Test Sandhi */
+test('"osk-âya" → syllabics', convertToSyllabics, 'osk-âya', 'ᐅᐢᑳᔭ')
+test('"miyw-âyâw" → syllabics', convertToSyllabics, 'miyw-âyâw', 'ᒥᔼᔮᐤ')
+test('"pîhc-âyihk" → syllabics', convertToSyllabics, 'pîhc-âyihk', 'ᐲᐦᒑᔨᕽ')
+test('"wîhth-owin" → syllabics', convertToSyllabics, 'wîhth-owin', 'ᐑᐦᖪᐏᐣ')
 
 /* ***************************** Test Macros ***************************** */
 
@@ -79,13 +85,13 @@ function convertSemiRoundTripWithMacrons (t, sro, syllabics) {
 /**
  * Test macro that tests SRO → syllabics.
  */
-function convertToSRO (t, sro, syllabics) {
+function convertToSyllabics (t, sro, syllabics) {
   t.is(sro2syllabics(sro), syllabics)
 }
 
 /**
  * Test macro that tests SRO → syllabics.
  */
-function convertToSyllabics (t, syllabics, sro) {
+function convertToSRO (t, syllabics, sro) {
   t.is(syllabics2sro(syllabics), sro)
 }
