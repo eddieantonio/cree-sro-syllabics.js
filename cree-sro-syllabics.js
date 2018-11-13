@@ -20,7 +20,9 @@
   const __version__ = '2018.11.08'
 
   // Defaults
-  const DEFAULT_HYPHENS = '\u202f'
+  const DEFAULT_SRO2SYLLABICS_OPTIONS = {
+    hyphens: '\u202f' // U+202F NARROW NO-BREAK SPACE, preferred by syllabics writers
+  }
   const DEFAULT_SYLLABICS2SRO_OPTIONS = {
     longAccents: 'circumflexes'
   }
@@ -91,8 +93,8 @@
   `
   const translateAltForms = makeTranslation("eē'īōā", 'êêiîôâ')
 
-  function sro2syllabics (sro, options = {}) { // TODO: convert to options Object
-    let hyphens = options.hyphens || DEFAULT_HYPHENS
+  function sro2syllabics (sro, options = {}) {
+    let hyphens = options.hyphens || DEFAULT_SRO2SYLLABICS_OPTIONS.hyphens
     let sandhi = true
 
     let transliteration = nfc(sro).replace(wordPattern, transliterateWord)
