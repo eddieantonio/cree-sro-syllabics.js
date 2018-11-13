@@ -59,6 +59,11 @@ test('"amiskwaciy-waskahikan" → syllabics', convertRoundTrip, 'amiskwaciy-wask
 test('"kâ-mahihkani-pimohtêt isiyihkâsow" → syllabics', convertRoundTrip,
   'kâ-mahihkani-pimohtêt isiyihkâsow', 'ᑳ ᒪᐦᐃᐦᑲᓂ ᐱᒧᐦᑌᐟ ᐃᓯᔨᐦᑳᓱᐤ')
 
+test('supplying custom hyphens', t => {
+  let customHyphen = '$'
+  t.is(sro2syllabics('paskwâwi-mostos', { hyphens: customHyphen }), 'ᐸᐢᒁᐏ' + customHyphen + 'ᒧᐢᑐᐢ')
+})
+
 /* Test Sandhi */
 test('"osk-âya" → syllabics', convertToSyllabics, 'osk-âya', 'ᐅᐢᑳᔭ')
 test('"miyw-âyâw" → syllabics', convertToSyllabics, 'miyw-âyâw', 'ᒥᔼᔮᐤ')
