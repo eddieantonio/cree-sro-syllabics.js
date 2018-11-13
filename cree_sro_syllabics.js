@@ -109,16 +109,20 @@ var transcode_sro_word_to_syllabics = function (sro_word, hyphen, sandhi) {
 	}
 	return ''.join (parts);
 };
-var nfc = function (text) {
-	return normalize ('NFC', text);
-};
+
+function nfc(text) {
+	return text.normalize('NFC');
+}
+
 var syllabics2sro_lookup = (function () {
 	let lookup = {};
 	for (var [sro, syl] of Object.entries(sro2syllabics_lookup)) {
 		lookup[syl] = sro;
 	}
 	return lookup;
-}) ();
+})();
+
+
 Object.assign(syllabics2sro_lookup, {'ᐝ': 'y', '᙮': '.', 'ᑦ': 'm', 'ᕁ': 'hk', 'ᐩ': 'y', '\u202f': '-'});
 var SYLLABICS_TO_SRO = _maketrans (syllabics2sro_lookup);
 var SYLLABIC_WITH_DOT = {'ᐁ': 'ᐍ', 'ᐃ': 'ᐏ', 'ᐄ': 'ᐑ', 'ᐅ': 'ᐓ', 'ᐆ': 'ᐕ', 'ᐊ': 'ᐘ', 'ᐋ': 'ᐚ', 'ᐯ': 'ᐻ', 'ᐱ': 'ᐽ', 'ᐲ': 'ᐿ', 'ᐳ': 'ᑁ', 'ᐴ': 'ᑃ', 'ᐸ': 'ᑅ', 'ᐹ': 'ᑇ', 'ᑌ': 'ᑘ', 'ᑎ': 'ᑚ', 'ᑏ': 'ᑜ', 'ᑐ': 'ᑞ', 'ᑑ': 'ᑠ', 'ᑕ': 'ᑢ', 'ᑖ': 'ᑤ', 'ᑫ': 'ᑵ', 'ᑭ': 'ᑷ', 'ᑮ': 'ᑹ', 'ᑯ': 'ᑻ', 'ᑰ': 'ᑽ', 'ᑲ': 'ᑿ', 'ᑳ': 'ᒁ', 'ᒉ': 'ᒓ', 'ᒋ': 'ᒕ', 'ᒌ': 'ᒗ', 'ᒍ': 'ᒙ', 'ᒎ': 'ᒛ', 'ᒐ': 'ᒝ', 'ᒑ': 'ᒟ', 'ᒣ': 'ᒭ', 'ᒥ': 'ᒯ', 'ᒦ': 'ᒱ', 'ᒧ': 'ᒳ', 'ᒨ': 'ᒵ', 'ᒪ': 'ᒷ', 'ᒫ': 'ᒹ', 'ᓀ': 'ᓊ', 'ᓇ': 'ᓌ', 'ᓈ': 'ᓎ', 'ᓭ': 'ᓷ', 'ᓯ': 'ᓹ', 'ᓰ': 'ᓻ', 'ᓱ': 'ᓽ', 'ᓲ': 'ᓿ', 'ᓴ': 'ᔁ', 'ᓵ': 'ᔃ', 'ᔦ': 'ᔰ', 'ᔨ': 'ᔲ', 'ᔩ': 'ᔴ', 'ᔪ': 'ᔶ', 'ᔫ': 'ᔸ', 'ᔭ': 'ᔺ', 'ᔮ': 'ᔼ'};
@@ -141,11 +145,12 @@ var syllabics2sro = function (syllabics, produce_macrons) {
 	}
 	return sro_string;
 };
+
 function _maketrans() {
 	new Error('not implemented');
 }
 
-/* npm exports. */
+/* Node exports. */
 if (typeof "module" !== 'undefined') {
 	module.exports = {
 		sro2syllabics,
