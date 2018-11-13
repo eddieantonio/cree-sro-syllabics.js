@@ -168,7 +168,7 @@
     return sroString
 
     function fixFinalDot (match) {
-      return SYLLABIC_WITH_DOT[match.group(1)]
+      return SYLLABIC_WITH_DOT[match[0]]
     }
   }
 
