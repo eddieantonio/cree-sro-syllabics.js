@@ -113,8 +113,9 @@
         match = toTranscribe.match(sroPattern)
       }
 
-      if (false && /* TODO: */ parts.__getslice__(-(2), null, 1) === ['ᐦ', 'ᐠ']) {
-        parts.__setslice__(-(2), null, null, [sro2syllabicsLookup['hk']])
+      if (endsWithHK(parts)) {
+        // Replace last two charcters with 'hk' syllabic
+        parts = parts.slice(0, parts.length - 2).concat('ᕽ')
       }
 
       return parts.join('')
@@ -123,6 +124,11 @@
 
   function nfc (text) {
     return text.normalize('NFC')
+  }
+
+  function endsWithHK (parts) {
+    let n = parts.length
+    return parts[n - 1] === 'ᐠ' && parts[n - 2] === 'ᐦ'
   }
 
   const syllabics2sroLookup = (function () {
