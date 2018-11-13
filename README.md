@@ -18,7 +18,7 @@ Install
 ### Browser
 
 Copy `cree-sro-syllabics.js` to wherever is most convenient. Then,
-include it in your HTML with this:
+include it in your HTML like this:
 
 ```html
 <script src="/path/to/cree-sro-syllabics.js" charset="UTF-8"></script>
@@ -27,6 +27,16 @@ include it in your HTML with this:
 **Make sure to provide `charset="UTF-8"`**! The browser may attempt to
 read the file in an alternate encoding, and the converter will no longer
 work as expected
+
+When loaded in the browser, you can access all functions using the
+`CreeSROSyllabics` global:
+
+```html
+<script src="/path/to/cree-sro-syllabics.js" charset="UTF-8"></script>
+<script>
+console.log(CreeSROSyllabics.sro2syllabics("tân'si")) // logs "ᑕᓂᓯ"
+</script>
+```
 
 
 Usage
@@ -88,15 +98,29 @@ CreeSROSyllabics.syllabics2sro('ᑖᓂᓯ')
 
 `options`, if supplied, is an object containing the following options:
 
-#### `options.longVowels`
+#### `options.longAccents`
 
-Whether to use circumflexes or macrons when transcribing long vowels.
+Whether to use circumflexes (âêîô) or macrons (āēīō) when transcribing long vowels.
 
 Valid options:
 
  - `'circumflexes'` (default)
  - `'macrons'`
 
+
+Specifying `'macrons'`:
+
+```javascript
+CreeSROSyllabics.syllabics2sro("ᑖᓂᓯ", { longAccents: 'macrons' })
+```
+
+Using the defaults (circumflexes):
+
+```javascript
+CreeSROSyllabics.syllabics2sro("ᑖᓂᓯ", { longAccents: 'macrons' })
+```
+
+> tānisi
 
 ### `version`
 
