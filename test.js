@@ -1,14 +1,16 @@
 import test from 'ava'
 
-let { sro2syllabics } = require('./')
+let { sro2syllabics, syllabics2sro } = require('./')
 
-function convertToSyllabics (t, sro, syllabics) {
+function convertRoundTrip (t, sro, syllabics) {
   t.is(sro2syllabics(sro), syllabics)
+  t.is(syllabics2sro(syllabics), sro)
 }
 
-test('"acimosis" → syllabics', convertToSyllabics, 'acimosis', 'ᐊᒋᒧᓯᐢ')
-test('"atahk" → syllabics', convertToSyllabics, 'atahk', 'ᐊᑕᕽ')
-test('"mêriy" → syllabics', convertToSyllabics, 'mêriy', 'ᒣᕒᐃᕀ')
-test('"wîstihkêw" → syllabics', convertToSyllabics, 'wîstihkêw', 'ᐑᐢᑎᐦᑫᐤ')
-test('"nêhiyawêwin" → syllabics', convertToSyllabics, 'nêhiyawêwin', 'ᓀᐦᐃᔭᐍᐏᐣ')
-test('"tirêyl" → syllabics', convertToSyllabics, 'tirêyl', 'ᑎᕒᐁᕀᓬ')
+/* Basic, full word tests. */
+test('"acimosis" → syllabics', convertRoundTrip, 'acimosis', 'ᐊᒋᒧᓯᐢ')
+test('"atahk" → syllabics', convertRoundTrip, 'atahk', 'ᐊᑕᕽ')
+test('"mêriy" → syllabics', convertRoundTrip, 'mêriy', 'ᒣᕒᐃᕀ')
+test('"wîstihkêw" → syllabics', convertRoundTrip, 'wîstihkêw', 'ᐑᐢᑎᐦᑫᐤ')
+test('"nêhiyawêwin" → syllabics', convertRoundTrip, 'nêhiyawêwin', 'ᓀᐦᐃᔭᐍᐏᐣ')
+test('"tirêyl" → syllabics', convertRoundTrip, 'tirêyl', 'ᑎᕒᐁᕀᓬ')
