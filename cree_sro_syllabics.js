@@ -66,7 +66,7 @@
       (?<=[\\u1400-\\u167f])[.] |
       \\A[.]\\Z
   `)
-  const TRANSLATE_ALT_FORMS = makeTranslation("eē'īōā", 'êêiîôâ') // TODO: replacement for make trans
+  const translateAltForms = makeTranslation("eē'īōā", 'êêiîôâ') // TODO: replacement for make trans
 
   function sro2syllabics (sro, hyphens, sandhi) { // TODO: convert to options Object
     if (typeof hyphens === 'undefined' || (hyphens != null && hyphens.hasOwnProperty('__kwargtrans__'))) {
@@ -80,39 +80,45 @@
     return transliteration.replace(fullStopPattern, '᙮')
 
     function transliterateWord (match) {
-      return transcodeSROWordToSyllabics(match.group(0), hyphens, sandhi)
+      return transcodeSROWordToSyllabics(match)
     }
-  }
 
-  function transcodeSROWordToSyllabics (sroWord, hyphen, sandhi) {
-    var toTranscribe = sroWord.lower().translate(TRANSLATE_ALT_FORMS)
-    var lookup = Object.new(sro2syllabicsLookup)
-    Object.assign(lookup, { '-': hyphen })
-    var parts = []
-    var match = sroPattern.match(toTranscribe)
-    while (match) {
-      var __left0__ = match.groups()
-      var onset = __left0__[0]
-      var vowel = __left0__[1]
-      if (sandhi && onset !== null) {
-        var syllable = onset + vowel
-        var nextSyllablePos = match.end()
-      } else if (onset !== null) {
-        syllable = (onset === 'w' ? 'w' : onset.rstrip('w'))
-        nextSyllablePos = syllable.length
-      } else {
-        syllable = match.group(0)
-        nextSyllablePos = match.end()
+    function transcodeSROWordToSyllabics (sroWord) {
+      let toTranscribe = translateAltForms(sroWord.toLowerCase())
+
+      let lookup = Object.create(sro2syllabicsLookup)
+      Object.assign(lookup, { '-': hyphens })
+
+      let parts = []
+      let match = toTranscribe.match(sroPattern)
+
+      while (match) {
+        let [syllable, onset, vowel] = match
+        let nextSyllablePos
+
+        if (sandhi && onset !== undefined) {
+          syllable = onset + vowel
+          nextSyllablePos = match[0].length
+        } else if (onset !== undefined) {
+          syllable = (onset === 'w' ? 'w' : onset.rstrip('w'))
+          nextSyllablePos = syllable.length
+        } else {
+          nextSyllablePos = match[0].length
+        }
+
+        let syllabic = lookup[syllable]
+        parts.push(syllabic)
+        toTranscribe = toTranscribe.slice(nextSyllablePos)
+
+        match = toTranscribe.match(sroPattern)
       }
-      let syllabic = lookup[syllable]
-      parts.append(syllabic)
-      toTranscribe = toTranscribe.__getslice__(nextSyllablePos, null, 1)
-      match = sroPattern.match(toTranscribe)
+
+      if (false && /* TODO: */ parts.__getslice__(-(2), null, 1) === ['ᐦ', 'ᐠ']) {
+        parts.__setslice__(-(2), null, null, [sro2syllabicsLookup['hk']])
+      }
+
+      return parts.join('')
     }
-    if (parts.__getslice__(-(2), null, 1) === ['ᐦ', 'ᐠ']) {
-      parts.__setslice__(-(2), null, null, [sro2syllabicsLookup['hk']])
-    }
-    return ''.join(parts)
   }
 
   function nfc (text) {
