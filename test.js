@@ -74,6 +74,9 @@ test('"namēpith" → syllabics', convertSemiRoundTripWithMacrons, 'namēpith', 
 test('"thē thi tho tha thī thō thā" → syllabics', convertSemiRoundTripWithMacrons,
   'thē thi tho tha thī thō thā', 'ᖧ ᖨ ᖪ ᖬ ᖩ ᖫ ᖭ')
 
+/* Test rare nwV forms */
+test('"nwe nwa nwā" → syllabics', convertToSyllabics, 'nwe nwa nwā', 'ᓊ ᓌ ᓎ')
+
 /* ***************************** Test Macros ***************************** */
 
 /**
