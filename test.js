@@ -2,6 +2,8 @@ import test from 'ava'
 
 let { sro2syllabics, syllabics2sro } = require('./')
 
+const COMBINING_CIRCUMFLEX = '\u0302'
+
 /* Basic, full word tests. */
 test('"acimosis" → syllabics', convertRoundTrip, 'acimosis', 'ᐊᒋᒧᓯᐢ')
 test('"atahk" → syllabics', convertRoundTrip, 'atahk', 'ᐊᑕᕽ')
@@ -13,6 +15,16 @@ test('"tirêyl" → syllabics', convertRoundTrip, 'tirêyl', 'ᑎᕒᐁᕀᓬ')
 /* Spelling relaxation tests. */
 test('"Tân\'si" → syllabics', convertToSRO, "Tân'si", 'ᑖᓂᓯ')
 test('"Maskekosihk" → syllabics', convertToSRO, 'Maskekosihk', 'ᒪᐢᑫᑯᓯᕽ')
+
+test('Unicode normalization', t => {
+  let water = 'nipiy'
+  let leaf = 'ni' + COMBINING_CIRCUMFLEX + 'piy'
+
+  t.not(water, leaf)
+  t.not(sro2syllabics(water), sro2syllabics(leaf))
+  t.is(sro2syllabics(water), 'ᓂᐱᕀ')
+  t.is(sro2syllabics(leaf), 'ᓃᐱᕀ')
+})
 
 /**
  * Test macro that tests SRO → syllabics, syllabics → SRO,
