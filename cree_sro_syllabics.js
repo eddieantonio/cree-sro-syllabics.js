@@ -1,7 +1,13 @@
 // Transcrypt'ed from Python, 2018-11-12 13:29:37
 (function () {
   const __version__ = '2018.11.08'
+
+  // Defaults
   const DEFAULT_HYPHENS = '\u202f'
+  const DEFAULT_SYLLABICS2SRO_OPTIONS = {
+    longAccents: 'circumflexes'
+  }
+
   const CONSONANT = '[ptkcshmnyw]|th'
   const STRICT_VOWEL = '[êioaîôâ]'
   const VOWEL = `${STRICT_VOWEL}|[eēī'ōā]`
@@ -151,7 +157,7 @@
   const circumflexToMacrons = makeTranslation('êîôâ', 'ēīōā')
 
   function syllabics2sro (syllabics, options = {}) {
-    let longAccents = options.longAccents || 'circumflexes'
+    let longAccents = options.longAccents || DEFAULT_SYLLABICS2SRO_OPTIONS.longAccents
 
     var normalized = syllabics.replace(finalDotPattern, fixFinalDot)
     var sroString = syllabicToSRO(normalized)
