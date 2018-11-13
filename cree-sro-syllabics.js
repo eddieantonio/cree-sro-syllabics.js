@@ -16,6 +16,7 @@
  */
 
 (function () {
+  // EXPORT: version
   const VERSION = '2018.11.13-alpha'
 
   // What functions and constants to export:
@@ -24,6 +25,8 @@
     syllabics2sro,
     version: VERSION
   }
+
+  // ============================ Constants ============================ \\
 
   // Default options for sro2syllabics() and syllabics2sro
   const DEFAULT_SRO2SYLLABICS_OPTIONS = {
@@ -88,10 +91,9 @@
           $
   )
   `
-  const WORD = verboseRegExp`
+  const wordPattern = new RegExp(verboseRegExp`
       ${BEGIN_WORD} ${MORPHEME} (?: (?:${CODA})?-${MORPHEME})* ${END_WORD}
-  `
-  const wordPattern = new RegExp(WORD, 'gi')
+  `, 'gi')
   // Matches a full stop at the end of a Cree word, or in isolation.
   const fullStopPattern = verboseRegExp`
       (?<=[\\u1400-\\u167f])[.] |
@@ -126,9 +128,16 @@
   const translateAltForms = makeTranslation("eē'īōā", 'êêiîôâ')
   const syllabicToSRO = makeTranslation(Object.keys(syllabics2sroLookup), Object.values(syllabics2sroLookup))
 
+  // ========================= Primary Exports ========================= \\
+
   // EXPORT: Convert SRO to syllabics:
   function sro2syllabics (sro, options = {}) {
     let hyphens = options.hyphens || DEFAULT_SRO2SYLLABICS_OPTIONS.hyphens
+    // Instead of using sro2syllabicsLookup directly, create a customizable
+    // lookup here that fallsback to sro2syllabicsLookup.
+    let lookup = Object.create(sro2syllabicsLookup)
+    // The customization is what the hyphen should be converted to:
+    Object.assign(lookup, { '-': hyphens })
 
     let transliteration = nfc(sro).replace(wordPattern, transliterateWord)
     return transliteration.replace(fullStopPattern, '᙮')
@@ -139,9 +148,6 @@
 
     function transcodeSROWordToSyllabics (sroWord) {
       let toTranscribe = translateAltForms(sroWord.toLowerCase())
-
-      let lookup = Object.create(sro2syllabicsLookup)
-      Object.assign(lookup, { '-': hyphens })
 
       let parts = []
       let match = toTranscribe.match(sroPattern)
@@ -183,19 +189,32 @@
       return circumflexToMacrons(sroString)
     }
     return sroString
-
-    function fixFinalDot (match) {
-      return SYLLABIC_WITH_DOT[match[0]]
-    }
   }
 
-  function nfc (text) {
-    return text.normalize('NFC')
+  // ========================= Helper functions ========================= \\
+
+  /**
+   * Returns the string in NFC Unicode normalization form.
+   * This means latin characters with accents will always be precomposed, if
+   * possible.
+   */
+  function nfc (string) {
+    return string.normalize('NFC')
   }
 
+  /**
+   * Returns whether the array ends with ᐦᐠ
+   */
   function endsWithHK (parts) {
     let n = parts.length
     return parts[n - 1] === 'ᐠ' && parts[n - 2] === 'ᐦ'
+  }
+
+  /**
+   * Converts a syllabic into its w-dotted equivilent.
+   */
+  function fixFinalDot (match) {
+    return SYLLABIC_WITH_DOT[match[0]]
   }
 
   /**
@@ -216,6 +235,10 @@
     }
   }
 
+  /**
+   * Template tag for creating defining regular expressions with whitespace
+   * and placeholders. Allows for (somewhat) more readable regexps.
+   */
   function verboseRegExp (strings, ...placeholders) {
     let normalizedStrings = strings.map(removeWhitespace)
     let normalizedPlaceholders = placeholders.map(removeWhitespace)
