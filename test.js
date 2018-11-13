@@ -36,6 +36,14 @@ test('alternate y-final', convertToSyllabics, 'ᓰᐱᐝ', 'sîpiy')
 test('test macrons', convertSemiRoundTripWithMacrons, 'yōtinipēstāw', 'ᔫᑎᓂᐯᐢᑖᐤ')
 test('test macrons', convertSemiRoundTripWithMacrons, 'īkatē', 'ᐄᑲᑌ')
 
+/* Test hyphens */
+test('"paskwâwi-mostos" → syllabics', convertRoundTrip, 'paskwâwi-mostos', 'ᐸᐢᒁᐏ ᒧᐢᑐᐢ')
+test('"amiskwaciy-waskahikan" → syllabics', convertRoundTrip, 'amiskwaciy-waskahikan', 'ᐊᒥᐢᑿᒋᕀ ᐘᐢᑲᐦᐃᑲᐣ')
+test('"kâ-mahihkani-pimohtêt isiyihkâsow" → syllabics', convertRoundTrip,
+  'kâ-mahihkani-pimohtêt isiyihkâsow', 'ᑳ ᒪᐦᐃᐦᑲᓂ ᐱᒧᐦᑌᐟ ᐃᓯᔨᐦᑳᓱᐤ')
+
+/* ***************************** Test Macros ***************************** */
+
 /**
  * Test macro that tests SRO → syllabics, syllabics → SRO,
  * SRO → syllabics → SRO, and syllabics → SRO → syllabics.
