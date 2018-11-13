@@ -48,6 +48,10 @@ test('"miyw-âyâw" → syllabics', convertToSyllabics, 'miyw-âyâw', 'ᒥᔼ�
 test('"pîhc-âyihk" → syllabics', convertToSyllabics, 'pîhc-âyihk', 'ᐲᐦᒑᔨᕽ')
 test('"wîhth-owin" → syllabics', convertToSyllabics, 'wîhth-owin', 'ᐑᐦᖪᐏᐣ')
 
+/* Test full-stop */
+test('test full-stop (all Cree)', convertSemiRoundTrip, 'êtî nitisiyihkâson.', 'ᐁᑏ ᓂᑎᓯᔨᐦᑳᓱᐣ᙮')
+test('test full-stop (mostly English)', convertSemiRoundTrip, 'She told Dr. Thunder: "ninôhtêhkatân."', 'She told Dr. Thunder: "ᓂᓅᐦᑌᐦᑲᑖᐣ᙮"')
+
 /* ***************************** Test Macros ***************************** */
 
 /**
