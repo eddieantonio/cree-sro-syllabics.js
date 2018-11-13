@@ -59,6 +59,11 @@ test('"ᐋᐧᐱ ᑭᐦᐃᐤ" → "ᐚᐱ ᑭᐦᐃᐤ"', t => {
   t.is(sro2syllabics(syllabics2sro('ᐋᐧᐱ ᑭᐦᐃᐤ')), 'ᐚᐱ ᑭᐦᐃᐤ')
 })
 
+/* Test lookalikes */
+test('lookalike: U+1466 CANADIAN SYLLABICS T', convertLookalike, 'ᐚᐸ\u1466', 'wâpam', 'ᐚᐸᒼ')
+test('lookalike: U+1541 CANADIAN SYLLABICS SAYISI YI', convertLookalike, 'ᓂᐲ\u1541', 'nipîhk', 'ᓂᐲᕽ')
+test('lookalike: U+1429 CANADIAN SYLLABICS FINAL PLUS', convertLookalike, 'ᓂᐱ\u1429', 'nipiy', 'ᓂᐱᕀ')
+
 /* ***************************** Test Macros ***************************** */
 
 /**
@@ -105,4 +110,13 @@ function convertToSyllabics (t, sro, syllabics) {
  */
 function convertToSRO (t, syllabics, sro) {
   t.is(syllabics2sro(syllabics), sro)
+}
+
+/**
+ * Test macro for testing lookalike normalization
+ */
+function convertLookalike (t, erroneousSyllabics, sro, correctSyllabics) {
+  t.not(erroneousSyllabics, correctSyllabics)
+  t.is(syllabics2sro(erroneousSyllabics), sro)
+  t.is(sro2syllabics(syllabics2sro(erroneousSyllabics)), correctSyllabics)
 }
