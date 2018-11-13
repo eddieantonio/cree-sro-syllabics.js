@@ -5,7 +5,7 @@
   const CONSONANT = '[ptkcshmnyw]|th'
   const STRICT_VOWEL = '[êioaîôâ]'
   const VOWEL = `${STRICT_VOWEL}|[eēī'ōā]`
-  const sroPattern = new RegExp(`
+  const sroPattern = verboseRegExp`
       ((?:${CONSONANT})w?)-(${STRICT_VOWEL}) |
       thê|thi|tho|tha|thî|thô|thâ                            |th|
       wê |wi |wo |wa |wî |wô |wâ                             |w |
@@ -20,7 +20,8 @@
       h|l|r|
       ê|i|î|o|ô|a|â|
       -
-  `)
+  `
+
   const sro2syllabicsLookup = { 'ê': 'ᐁ', 'i': 'ᐃ', 'î': 'ᐄ', 'o': 'ᐅ', 'ô': 'ᐆ', 'a': 'ᐊ', 'â': 'ᐋ', 'wê': 'ᐍ', 'wi': 'ᐏ', 'wî': 'ᐑ', 'wo': 'ᐓ', 'wô': 'ᐕ', 'wa': 'ᐘ', 'wâ': 'ᐚ', 'w': 'ᐤ', 'p': 'ᑊ', 'pê': 'ᐯ', 'pi': 'ᐱ', 'pî': 'ᐲ', 'po': 'ᐳ', 'pô': 'ᐴ', 'pa': 'ᐸ', 'pâ': 'ᐹ', 'pwê': 'ᐻ', 'pwi': 'ᐽ', 'pwî': 'ᐿ', 'pwo': 'ᑁ', 'pwô': 'ᑃ', 'pwa': 'ᑅ', 'pwâ': 'ᑇ', 't': 'ᐟ', 'tê': 'ᑌ', 'ti': 'ᑎ', 'tî': 'ᑏ', 'to': 'ᑐ', 'tô': 'ᑑ', 'ta': 'ᑕ', 'tâ': 'ᑖ', 'twê': 'ᑘ', 'twi': 'ᑚ', 'twî': 'ᑜ', 'two': 'ᑞ', 'twô': 'ᑠ', 'twa': 'ᑢ', 'twâ': 'ᑤ', 'k': 'ᐠ', 'kê': 'ᑫ', 'ki': 'ᑭ', 'kî': 'ᑮ', 'ko': 'ᑯ', 'kô': 'ᑰ', 'ka': 'ᑲ', 'kâ': 'ᑳ', 'kwê': 'ᑵ', 'kwi': 'ᑷ', 'kwî': 'ᑹ', 'kwo': 'ᑻ', 'kwô': 'ᑽ', 'kwa': 'ᑿ', 'kwâ': 'ᒁ', 'c': 'ᐨ', 'cê': 'ᒉ', 'ci': 'ᒋ', 'cî': 'ᒌ', 'co': 'ᒍ', 'cô': 'ᒎ', 'ca': 'ᒐ', 'câ': 'ᒑ', 'cwê': 'ᒓ', 'cwi': 'ᒕ', 'cwî': 'ᒗ', 'cwo': 'ᒙ', 'cwô': 'ᒛ', 'cwa': 'ᒝ', 'cwâ': 'ᒟ', 'm': 'ᒼ', 'mê': 'ᒣ', 'mi': 'ᒥ', 'mî': 'ᒦ', 'mo': 'ᒧ', 'mô': 'ᒨ', 'ma': 'ᒪ', 'mâ': 'ᒫ', 'mwê': 'ᒭ', 'mwi': 'ᒯ', 'mwî': 'ᒱ', 'mwo': 'ᒳ', 'mwô': 'ᒵ', 'mwa': 'ᒷ', 'mwâ': 'ᒹ', 'n': 'ᐣ', 'nê': 'ᓀ', 'ni': 'ᓂ', 'nî': 'ᓃ', 'no': 'ᓄ', 'nô': 'ᓅ', 'na': 'ᓇ', 'nâ': 'ᓈ', 'nwê': 'ᓊ', 'nwa': 'ᓌ', 'nwâ': 'ᓎ', 's': 'ᐢ', 'sê': 'ᓭ', 'si': 'ᓯ', 'sî': 'ᓰ', 'so': 'ᓱ', 'sô': 'ᓲ', 'sa': 'ᓴ', 'sâ': 'ᓵ', 'swê': 'ᓷ', 'swi': 'ᓹ', 'swî': 'ᓻ', 'swo': 'ᓽ', 'swô': 'ᓿ', 'swa': 'ᔁ', 'swâ': 'ᔃ', 'y': 'ᕀ', 'yê': 'ᔦ', 'yi': 'ᔨ', 'yî': 'ᔩ', 'yo': 'ᔪ', 'yô': 'ᔫ', 'ya': 'ᔭ', 'yâ': 'ᔮ', 'ywê': 'ᔰ', 'ywi': 'ᔲ', 'ywî': 'ᔴ', 'ywo': 'ᔶ', 'ywô': 'ᔸ', 'ywa': 'ᔺ', 'ywâ': 'ᔼ', 'th': 'ᖮ', 'thê': 'ᖧ', 'thi': 'ᖨ', 'thî': 'ᖩ', 'tho': 'ᖪ', 'thô': 'ᖫ', 'tha': 'ᖬ', 'thâ': 'ᖭ', 'l': 'ᓬ', 'r': 'ᕒ', 'h': 'ᐦ', 'hk': 'ᕽ' }
   const WORD_INITIAL = `
       [ptkcmnsyh]w? |
@@ -46,8 +47,8 @@
   `
   const BEGIN_WORD = `
   (?:
-          ^  # Either the start of a string; or,
-          |  # at the edge of "letters".
+          ^
+          |
           (?<=[^a-zêioaîôâeēī'ōā])
   )
   `
@@ -57,7 +58,7 @@
           $
   )
   `
-  const WORD = `
+  const WORD = verboseRegExp`
       ${BEGIN_WORD} ${MORPHEME} (?: (?:${CODA})?-${MORPHEME})* ${END_WORD}
   `
   const wordPattern = new RegExp(WORD, 'i')
@@ -167,6 +168,27 @@
       return Array.from(string).map(ch =>
         translation.has(ch) ? translation.get(ch) : ch
       ).join('')
+    }
+  }
+
+  function verboseRegExp (strings, ...placeholders) {
+    let normalizedStrings = strings.map(removeWhitespace)
+    let normalizedPlaceholders = placeholders.map(removeWhitespace)
+    let regexpParts = []
+
+    // there are always strings.length + 1 placeholders
+    // the first string is either '' or the prefix
+    regexpParts.push(normalizedStrings[0])
+    // the last string is either '' or the suffix
+    for (let [index, placeholder] of normalizedPlaceholders.entries()) {
+      regexpParts.push(placeholder)
+      regexpParts.push(normalizedStrings[index + 1])
+    }
+
+    return new RegExp(regexpParts.join(''))
+
+    function removeWhitespace (string) {
+      return string.replace(/\s/g, '')
     }
   }
 
