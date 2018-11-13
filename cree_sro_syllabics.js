@@ -65,7 +65,7 @@
       (?<=[\\u1400-\\u167f])[.] |
       \\A[.]\\Z
   `)
-  const TRANSLATE_ALT_FORMS = _maketrans("eē'īōā", 'êêiîôâ') // TODO: replacement for make trans
+  const TRANSLATE_ALT_FORMS = makeTranslation("eē'īōā", 'êêiîôâ') // TODO: replacement for make trans
 
   function sro2syllabics (sro, hyphens, sandhi) { // TODO: convert to options Object
     if (typeof hyphens === 'undefined' || (hyphens != null && hyphens.hasOwnProperty('__kwargtrans__'))) {
@@ -127,13 +127,13 @@
     return lookup
   })()
 
-  const SYLLABICS_TO_SRO = _maketrans(syllabics2sroLookup)
+  const SYLLABICS_TO_SRO = makeTranslation(Object.keys(syllabics2sroLookup), Object.values(syllabics2sroLookup))
   const SYLLABIC_WITH_DOT = { 'ᐁ': 'ᐍ', 'ᐃ': 'ᐏ', 'ᐄ': 'ᐑ', 'ᐅ': 'ᐓ', 'ᐆ': 'ᐕ', 'ᐊ': 'ᐘ', 'ᐋ': 'ᐚ', 'ᐯ': 'ᐻ', 'ᐱ': 'ᐽ', 'ᐲ': 'ᐿ', 'ᐳ': 'ᑁ', 'ᐴ': 'ᑃ', 'ᐸ': 'ᑅ', 'ᐹ': 'ᑇ', 'ᑌ': 'ᑘ', 'ᑎ': 'ᑚ', 'ᑏ': 'ᑜ', 'ᑐ': 'ᑞ', 'ᑑ': 'ᑠ', 'ᑕ': 'ᑢ', 'ᑖ': 'ᑤ', 'ᑫ': 'ᑵ', 'ᑭ': 'ᑷ', 'ᑮ': 'ᑹ', 'ᑯ': 'ᑻ', 'ᑰ': 'ᑽ', 'ᑲ': 'ᑿ', 'ᑳ': 'ᒁ', 'ᒉ': 'ᒓ', 'ᒋ': 'ᒕ', 'ᒌ': 'ᒗ', 'ᒍ': 'ᒙ', 'ᒎ': 'ᒛ', 'ᒐ': 'ᒝ', 'ᒑ': 'ᒟ', 'ᒣ': 'ᒭ', 'ᒥ': 'ᒯ', 'ᒦ': 'ᒱ', 'ᒧ': 'ᒳ', 'ᒨ': 'ᒵ', 'ᒪ': 'ᒷ', 'ᒫ': 'ᒹ', 'ᓀ': 'ᓊ', 'ᓇ': 'ᓌ', 'ᓈ': 'ᓎ', 'ᓭ': 'ᓷ', 'ᓯ': 'ᓹ', 'ᓰ': 'ᓻ', 'ᓱ': 'ᓽ', 'ᓲ': 'ᓿ', 'ᓴ': 'ᔁ', 'ᓵ': 'ᔃ', 'ᔦ': 'ᔰ', 'ᔨ': 'ᔲ', 'ᔩ': 'ᔴ', 'ᔪ': 'ᔶ', 'ᔫ': 'ᔸ', 'ᔭ': 'ᔺ', 'ᔮ': 'ᔼ' }
   const finalDotPattern = (function () {
     let withoutDot = Object.keys(SYLLABIC_WITH_DOT).join('')
     return new RegExp(`([${withoutDot}])ᐧ`)
   }())
-  const circumflexToMacrons = _maketrans('êîôâ', 'ēīōā')
+  const circumflexToMacrons = makeTranslation('êîôâ', 'ēīōā')
   function syllabics2sro (syllabics, produceMacrons) {
     if (typeof produceMacrons === 'undefined' || (produceMacrons != null && produceMacrons.hasOwnProperty('__kwargtrans__'))) {
       produceMacrons = false
@@ -149,8 +149,22 @@
     return sroString
   }
 
-  function _maketrans () {
-    throw Error('not implemented')
+  /**
+   * Returns a function that translates cooresponding code units from string 1
+   * to string 2.
+   * Like Unix tr(1).
+   */
+  function makeTranslation (original, replacement) {
+    let translation = new Map()
+    for (let [index, source] of Array.from(original).entries()) {
+      translation.set(source, replacement[index] || '')
+    }
+
+    return function (string) {
+      return Array.from(string).map(ch =>
+        translation.has(ch) ? translation.get(ch) : ch
+      ).join('')
+    }
   }
 
   /* Node exports. */
