@@ -2,14 +2,16 @@ Cree SRO/Syllabics
 ==================
 
 [![Build Status](https://travis-ci.org/eddieantonio/cree-sro-syllabics.js.svg?branch=master)](https://travis-ci.org/eddieantonio/cree-sro-syllabics.js)
+[![npm version](https://badge.fury.io/js/cree-sro-syllabics.svg)](https://badge.fury.io/js/cree-sro-syllabics)
 
 Convert between Western Cree standard Roman orthography (SRO) and syllabics!
 
 This is a port of the [Python library of the same
 name][cree-sro-syllabics.py]. For more complete documentation, see the
-Python version.
+[Python version's documentation][readthedocs].
 
 [cree-sro-syllabics.py]: https://github.com/eddieantonio/cree-sro-syllabics
+[readthedocs]: https://crk-orthography.readthedocs.io/en/stable/
 
 
 Install
@@ -26,7 +28,7 @@ include it in your HTML like this:
 
 **Make sure to provide `charset="UTF-8"`**! The browser may attempt to
 read the file in an alternate encoding, and the converter will no longer
-work as expected
+work as expected.
 
 When loaded in the browser, you can access all functions using the
 `CreeSROSyllabics` global:
@@ -36,6 +38,22 @@ When loaded in the browser, you can access all functions using the
 <script>
 console.log(CreeSROSyllabics.sro2syllabics("tân'si")) // logs "ᑕᓂᓯ"
 </script>
+```
+
+### NodeJS
+
+Install using npm:
+
+```shell
+npm install cree-sro-syllabics --save
+```
+
+Then `require()` it into your code:
+
+```javascript
+var CreeSROSyllabics = require('cree-sro-syllabics')
+
+console.log(CreeSROSyllabics.sro2syllabics("tân'si")) // logs ᑖᓂᓯ
 ```
 
 
