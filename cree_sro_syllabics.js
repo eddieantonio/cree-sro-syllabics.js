@@ -5,64 +5,64 @@ var CONSONANT = '[ptkcshmnyw]|th';
 var STRICT_VOWEL = '[êioaîôâ]';
 var VOWEL = `${STRICT_VOWEL}|[eēī'ōā]`;
 var sro_pattern = new RegExp(`
-    ((?:${CONSONANT})w?)-(${STRICT_VOWEL}) |
-    thê|thi|tho|tha|thî|thô|thâ                            |th|
-    wê |wi |wo |wa |wî |wô |wâ                             |w |
-    pê |pi |po |pa |pî |pô |pâ |pwê|pwi|pwo|pwa|pwî|pwô|pwâ|p |
-    tê |ti |to |ta |tî |tô |tâ |twê|twi|two|twa|twî|twô|twâ|t |
-    kê |ki |ko |ka |kî |kô |kâ |kwê|kwi|kwo|kwa|kwî|kwô|kwâ|k |
-    cê |ci |co |ca |cî |cô |câ |cwê|cwi|cwo|cwa|cwî|cwô|cwâ|c |
-    mê |mi |mo |ma |mî |mô |mâ |mwê|mwi|mwo|mwa|mwî|mwô|mwâ|m |
-    nê |ni |no |na |nî |nô |nâ |nwê|nwa        |nwâ        |n |
-    sê |si |so |sa |sî |sô |sâ |swê|swi|swo|swa|swî|swô|swâ|s |
-    yê |yi |yo |ya |yî |yô |yâ |ywê|ywi|ywo|ywa|ywî|ywô|ywâ|y |
-    h|l|r|
-    ê|i|î|o|ô|a|â|
-    -
+		((?:${CONSONANT})w?)-(${STRICT_VOWEL}) |
+		thê|thi|tho|tha|thî|thô|thâ                            |th|
+		wê |wi |wo |wa |wî |wô |wâ                             |w |
+		pê |pi |po |pa |pî |pô |pâ |pwê|pwi|pwo|pwa|pwî|pwô|pwâ|p |
+		tê |ti |to |ta |tî |tô |tâ |twê|twi|two|twa|twî|twô|twâ|t |
+		kê |ki |ko |ka |kî |kô |kâ |kwê|kwi|kwo|kwa|kwî|kwô|kwâ|k |
+		cê |ci |co |ca |cî |cô |câ |cwê|cwi|cwo|cwa|cwî|cwô|cwâ|c |
+		mê |mi |mo |ma |mî |mô |mâ |mwê|mwi|mwo|mwa|mwî|mwô|mwâ|m |
+		nê |ni |no |na |nî |nô |nâ |nwê|nwa        |nwâ        |n |
+		sê |si |so |sa |sî |sô |sâ |swê|swi|swo|swa|swî|swô|swâ|s |
+		yê |yi |yo |ya |yî |yô |yâ |ywê|ywi|ywo|ywa|ywî|ywô|ywâ|y |
+		h|l|r|
+		ê|i|î|o|ô|a|â|
+		-
 `);
 var sro2syllabics_lookup = {'ê': 'ᐁ', 'i': 'ᐃ', 'î': 'ᐄ', 'o': 'ᐅ', 'ô': 'ᐆ', 'a': 'ᐊ', 'â': 'ᐋ', 'wê': 'ᐍ', 'wi': 'ᐏ', 'wî': 'ᐑ', 'wo': 'ᐓ', 'wô': 'ᐕ', 'wa': 'ᐘ', 'wâ': 'ᐚ', 'w': 'ᐤ', 'p': 'ᑊ', 'pê': 'ᐯ', 'pi': 'ᐱ', 'pî': 'ᐲ', 'po': 'ᐳ', 'pô': 'ᐴ', 'pa': 'ᐸ', 'pâ': 'ᐹ', 'pwê': 'ᐻ', 'pwi': 'ᐽ', 'pwî': 'ᐿ', 'pwo': 'ᑁ', 'pwô': 'ᑃ', 'pwa': 'ᑅ', 'pwâ': 'ᑇ', 't': 'ᐟ', 'tê': 'ᑌ', 'ti': 'ᑎ', 'tî': 'ᑏ', 'to': 'ᑐ', 'tô': 'ᑑ', 'ta': 'ᑕ', 'tâ': 'ᑖ', 'twê': 'ᑘ', 'twi': 'ᑚ', 'twî': 'ᑜ', 'two': 'ᑞ', 'twô': 'ᑠ', 'twa': 'ᑢ', 'twâ': 'ᑤ', 'k': 'ᐠ', 'kê': 'ᑫ', 'ki': 'ᑭ', 'kî': 'ᑮ', 'ko': 'ᑯ', 'kô': 'ᑰ', 'ka': 'ᑲ', 'kâ': 'ᑳ', 'kwê': 'ᑵ', 'kwi': 'ᑷ', 'kwî': 'ᑹ', 'kwo': 'ᑻ', 'kwô': 'ᑽ', 'kwa': 'ᑿ', 'kwâ': 'ᒁ', 'c': 'ᐨ', 'cê': 'ᒉ', 'ci': 'ᒋ', 'cî': 'ᒌ', 'co': 'ᒍ', 'cô': 'ᒎ', 'ca': 'ᒐ', 'câ': 'ᒑ', 'cwê': 'ᒓ', 'cwi': 'ᒕ', 'cwî': 'ᒗ', 'cwo': 'ᒙ', 'cwô': 'ᒛ', 'cwa': 'ᒝ', 'cwâ': 'ᒟ', 'm': 'ᒼ', 'mê': 'ᒣ', 'mi': 'ᒥ', 'mî': 'ᒦ', 'mo': 'ᒧ', 'mô': 'ᒨ', 'ma': 'ᒪ', 'mâ': 'ᒫ', 'mwê': 'ᒭ', 'mwi': 'ᒯ', 'mwî': 'ᒱ', 'mwo': 'ᒳ', 'mwô': 'ᒵ', 'mwa': 'ᒷ', 'mwâ': 'ᒹ', 'n': 'ᐣ', 'nê': 'ᓀ', 'ni': 'ᓂ', 'nî': 'ᓃ', 'no': 'ᓄ', 'nô': 'ᓅ', 'na': 'ᓇ', 'nâ': 'ᓈ', 'nwê': 'ᓊ', 'nwa': 'ᓌ', 'nwâ': 'ᓎ', 's': 'ᐢ', 'sê': 'ᓭ', 'si': 'ᓯ', 'sî': 'ᓰ', 'so': 'ᓱ', 'sô': 'ᓲ', 'sa': 'ᓴ', 'sâ': 'ᓵ', 'swê': 'ᓷ', 'swi': 'ᓹ', 'swî': 'ᓻ', 'swo': 'ᓽ', 'swô': 'ᓿ', 'swa': 'ᔁ', 'swâ': 'ᔃ', 'y': 'ᕀ', 'yê': 'ᔦ', 'yi': 'ᔨ', 'yî': 'ᔩ', 'yo': 'ᔪ', 'yô': 'ᔫ', 'ya': 'ᔭ', 'yâ': 'ᔮ', 'ywê': 'ᔰ', 'ywi': 'ᔲ', 'ywî': 'ᔴ', 'ywo': 'ᔶ', 'ywô': 'ᔸ', 'ywa': 'ᔺ', 'ywâ': 'ᔼ', 'th': 'ᖮ', 'thê': 'ᖧ', 'thi': 'ᖨ', 'thî': 'ᖩ', 'tho': 'ᖪ', 'thô': 'ᖫ', 'tha': 'ᖬ', 'thâ': 'ᖭ', 'l': 'ᓬ', 'r': 'ᕒ', 'h': 'ᐦ', 'hk': 'ᕽ'};
 var WORD_INITIAL = `
-    [ptkcmnsyh]w? |
-    (?:th|[rl]) |
-    w |
+		[ptkcmnsyh]w? |
+		(?:th|[rl]) |
+		w |
 
 `;
 var WORD_MEDIAL = `
-    (?:[hsmnwy]|th)? (?:[ptkcmnsyh]|th) w? |
-    w |
-    [yw]? [rl]
+		(?:[hsmnwy]|th)? (?:[ptkcmnsyh]|th) w? |
+		w |
+		[yw]? [rl]
 `;
 var WORD_FINAL = `
-    [hs]? (?:[ptcksmnwy]|th) |
-    [yw]? [rl]
-    |
+		[hs]? (?:[ptcksmnwy]|th) |
+		[yw]? [rl]
+		|
 `;
 var CODA = 'th|[hs]?[ptkcmn]|h|s|y|w';
 var MORPHEME = `
-    (?:${WORD_INITIAL}) (?:${VOWEL})
-        (?: (?:${WORD_MEDIAL}) (?:${VOWEL}) )*
-    (?:${WORD_FINAL})
+		(?:${WORD_INITIAL}) (?:${VOWEL})
+				(?: (?:${WORD_MEDIAL}) (?:${VOWEL}) )*
+		(?:${WORD_FINAL})
 `;
 var BEGIN_WORD = `
 (?:
-        ^  # Either the start of a string; or,
-        |  # at the edge of "letters".
-        (?<=[^a-zêioaîôâeēī\'ōā])
+				^  # Either the start of a string; or,
+				|  # at the edge of "letters".
+				(?<=[^a-zêioaîôâeēī\'ōā])
 )
 `;
 var END_WORD = `
 (?:
-        (?=[^a-zêioaîôâeēī'ōā]) |
-        $
+				(?=[^a-zêioaîôâeēī'ōā]) |
+				$
 )
 `;
 var WORD = `
-    ${BEGIN_WORD} ${MORPHEME} (?: (?:${CODA})?-${MORPHEME})* ${END_WORD}
+		${BEGIN_WORD} ${MORPHEME} (?: (?:${CODA})?-${MORPHEME})* ${END_WORD}
 `;
 var word_pattern = new RegExp(WORD, 'i');
 var full_stop_pattern = new RegExp(`
-    (?<=[\\u1400-\\u167f])[.] |
-    \\A[.]\\Z
+		(?<=[\\u1400-\\u167f])[.] |
+		\\A[.]\\Z
 `);
 var TRANSLATE_ALT_FORMS = _maketrans ("eē'īōā", 'êêiîôâ'); // TODO: replacement for make trans
 var sro2syllabics = function (sro, hyphens, sandhi) {
@@ -143,4 +143,13 @@ var syllabics2sro = function (syllabics, produce_macrons) {
 };
 function _maketrans() {
 	new Error('not implemented');
+}
+
+/* npm exports. */
+if (typeof "module" !== 'undefined') {
+	module.exports = {
+		sro2syllabics,
+		syllabics2sro,
+		version: __version__
+	};
 }
