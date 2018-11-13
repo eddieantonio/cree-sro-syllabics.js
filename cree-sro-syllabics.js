@@ -17,7 +17,7 @@
 
 // Transcrypt'ed from Python, 2018-11-12 13:29:37
 (function () {
-  const __version__ = '2018.11.08'
+  const VERSION = '2018.11.08'
 
   // Defaults
   const DEFAULT_SRO2SYLLABICS_OPTIONS = {
@@ -221,12 +221,17 @@
     }
   }
 
-  /* Node exports. */
+  let exports = {
+    sro2syllabics,
+    syllabics2sro,
+    version: VERSION
+  }
+
   if (typeof module !== 'undefined') {
-    module.exports = {
-      sro2syllabics,
-      syllabics2sro,
-      version: __version__
-    }
+    /* Export for Node/CommonJS */
+    module.exports = exports
+  } else if (typeof window !== 'undefined') {
+    /* Export for browsers */
+    window.CreeSROSyllabics = exports
   }
 }())
