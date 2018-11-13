@@ -1,1 +1,1 @@
-module.exports = require('./cree_sro_syllabics');
+module.exports = require('./cree_sro_syllabics')
