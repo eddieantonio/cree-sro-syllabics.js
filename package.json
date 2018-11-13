@@ -1,6 +1,6 @@
 {
   "name": "cree-sro-syllabics",
-  "version": "2018.11.13-alpha",
+  "version": "2018.11.13",
   "description": "Convert Western Cree SRO to syllabics",
   "main": "cree-sro-syllabics.js",
   "scripts": {
