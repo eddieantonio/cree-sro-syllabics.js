@@ -61,11 +61,11 @@
   const WORD = verboseRegExp`
       ${BEGIN_WORD} ${MORPHEME} (?: (?:${CODA})?-${MORPHEME})* ${END_WORD}
   `
-  const wordPattern = new RegExp(WORD, 'i')
-  const fullStopPattern = new RegExp(`
+  const wordPattern = new RegExp(WORD, 'gi')
+  const fullStopPattern = verboseRegExp`
       (?<=[\\u1400-\\u167f])[.] |
-      \\A[.]\\Z
-  `)
+      ^.$
+  `
   const translateAltForms = makeTranslation("eē'īōā", 'êêiîôâ') // TODO: replacement for make trans
 
   function sro2syllabics (sro, hyphens, sandhi) { // TODO: convert to options Object
