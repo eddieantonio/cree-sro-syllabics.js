@@ -77,6 +77,9 @@ test('"thē thi tho tha thī thō thā" → syllabics', convertSemiRoundTripWith
 /* Test rare nwV forms */
 test('"nwe nwa nwā" → syllabics', convertToSyllabics, 'nwe nwa nwā', 'ᓊ ᓌ ᓎ')
 
+/* Test adjacent "vowels" */
+test(`"I'm" → syllabics`, convertToSyllabics, "I'm", "I'm")
+
 /* ***************************** Test Macros ***************************** */
 
 /**
