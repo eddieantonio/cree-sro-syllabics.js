@@ -95,7 +95,6 @@
 
   function sro2syllabics (sro, options = {}) {
     let hyphens = options.hyphens || DEFAULT_SRO2SYLLABICS_OPTIONS.hyphens
-    let sandhi = true
 
     let transliteration = nfc(sro).replace(wordPattern, transliterateWord)
     return transliteration.replace(fullStopPattern, '᙮')
@@ -117,15 +116,11 @@
         let [syllable, onset, vowel] = match
         let nextSyllablePos
 
-        if (sandhi && onset !== undefined) {
+        if (onset !== undefined) {
+          // When the onset matched, apply sandhi for Cw?-V → Cw?V
           syllable = onset + vowel
-          nextSyllablePos = match[0].length
-        } else if (onset !== undefined) {
-          syllable = (onset === 'w' ? 'w' : onset.rstrip('w'))
-          nextSyllablePos = syllable.length
-        } else {
-          nextSyllablePos = match[0].length
         }
+        nextSyllablePos = match[0].length
 
         let syllabic = lookup[syllable]
         parts.push(syllabic)
