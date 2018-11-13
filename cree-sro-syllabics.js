@@ -89,15 +89,11 @@
       (?<=[\\u1400-\\u167f])[.] |
       ^.$
   `
-  const translateAltForms = makeTranslation("eē'īōā", 'êêiîôâ') // TODO: replacement for make trans
+  const translateAltForms = makeTranslation("eē'īōā", 'êêiîôâ')
 
-  function sro2syllabics (sro, hyphens, sandhi) { // TODO: convert to options Object
-    if (typeof hyphens === 'undefined' || (hyphens != null && hyphens.hasOwnProperty('__kwargtrans__'))) {
-      hyphens = DEFAULT_HYPHENS
-    }
-    if (typeof sandhi === 'undefined' || (sandhi != null && sandhi.hasOwnProperty('__kwargtrans__'))) {
-      sandhi = true
-    }
+  function sro2syllabics (sro, options = {}) { // TODO: convert to options Object
+    let hyphens = options.hyphens || DEFAULT_HYPHENS
+    let sandhi = true
 
     let transliteration = nfc(sro).replace(wordPattern, transliterateWord)
     return transliteration.replace(fullStopPattern, '᙮')
