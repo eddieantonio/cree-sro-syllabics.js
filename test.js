@@ -33,6 +33,9 @@ test('word matching', convertSemiRoundTrip, '\t namoya  tataspêyihtam. ', '\t �
 
 test('alternate y-final', convertToSyllabics, 'ᓰᐱᐝ', 'sîpiy')
 
+test('test macrons', convertSemiRoundTripWithMacrons, 'yōtinipēstāw', 'ᔫᑎᓂᐯᐢᑖᐤ')
+test('test macrons', convertSemiRoundTripWithMacrons, 'īkatē', 'ᐄᑲᑌ')
+
 /**
  * Test macro that tests SRO → syllabics, syllabics → SRO,
  * SRO → syllabics → SRO, and syllabics → SRO → syllabics.
@@ -53,6 +56,16 @@ function convertRoundTrip (t, sro, syllabics) {
 function convertSemiRoundTrip (t, sro, syllabics) {
   t.is(sro2syllabics(sro), syllabics)
   t.is(syllabics2sro(syllabics), sro)
+}
+
+/**
+ * Test macro that tests SRO → syllabics and syllabics → SRO. Always produces
+ * macrons.
+ * Inverses are not tested.
+ */
+function convertSemiRoundTripWithMacrons (t, sro, syllabics) {
+  t.is(sro2syllabics(sro), syllabics)
+  t.is(syllabics2sro(syllabics, { longAccents: 'macrons' }), sro)
 }
 
 /**
