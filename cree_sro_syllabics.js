@@ -142,7 +142,7 @@
     return lookup
   })()
 
-  const SYLLABICS_TO_SRO = makeTranslation(Object.keys(syllabics2sroLookup), Object.values(syllabics2sroLookup))
+  const syllabicToSRO = makeTranslation(Object.keys(syllabics2sroLookup), Object.values(syllabics2sroLookup))
   const SYLLABIC_WITH_DOT = { 'ᐁ': 'ᐍ', 'ᐃ': 'ᐏ', 'ᐄ': 'ᐑ', 'ᐅ': 'ᐓ', 'ᐆ': 'ᐕ', 'ᐊ': 'ᐘ', 'ᐋ': 'ᐚ', 'ᐯ': 'ᐻ', 'ᐱ': 'ᐽ', 'ᐲ': 'ᐿ', 'ᐳ': 'ᑁ', 'ᐴ': 'ᑃ', 'ᐸ': 'ᑅ', 'ᐹ': 'ᑇ', 'ᑌ': 'ᑘ', 'ᑎ': 'ᑚ', 'ᑏ': 'ᑜ', 'ᑐ': 'ᑞ', 'ᑑ': 'ᑠ', 'ᑕ': 'ᑢ', 'ᑖ': 'ᑤ', 'ᑫ': 'ᑵ', 'ᑭ': 'ᑷ', 'ᑮ': 'ᑹ', 'ᑯ': 'ᑻ', 'ᑰ': 'ᑽ', 'ᑲ': 'ᑿ', 'ᑳ': 'ᒁ', 'ᒉ': 'ᒓ', 'ᒋ': 'ᒕ', 'ᒌ': 'ᒗ', 'ᒍ': 'ᒙ', 'ᒎ': 'ᒛ', 'ᒐ': 'ᒝ', 'ᒑ': 'ᒟ', 'ᒣ': 'ᒭ', 'ᒥ': 'ᒯ', 'ᒦ': 'ᒱ', 'ᒧ': 'ᒳ', 'ᒨ': 'ᒵ', 'ᒪ': 'ᒷ', 'ᒫ': 'ᒹ', 'ᓀ': 'ᓊ', 'ᓇ': 'ᓌ', 'ᓈ': 'ᓎ', 'ᓭ': 'ᓷ', 'ᓯ': 'ᓹ', 'ᓰ': 'ᓻ', 'ᓱ': 'ᓽ', 'ᓲ': 'ᓿ', 'ᓴ': 'ᔁ', 'ᓵ': 'ᔃ', 'ᔦ': 'ᔰ', 'ᔨ': 'ᔲ', 'ᔩ': 'ᔴ', 'ᔪ': 'ᔶ', 'ᔫ': 'ᔸ', 'ᔭ': 'ᔺ', 'ᔮ': 'ᔼ' }
   const finalDotPattern = (function () {
     let withoutDot = Object.keys(SYLLABIC_WITH_DOT).join('')
@@ -154,15 +154,17 @@
     if (typeof produceMacrons === 'undefined' || (produceMacrons != null && produceMacrons.hasOwnProperty('__kwargtrans__'))) {
       produceMacrons = false
     }
-    var fixFinalDot = function (match) {
-      return SYLLABIC_WITH_DOT[match.group(1)]
-    }
-    var normalized = finalDotPattern.sub(fixFinalDot, syllabics)
-    var sroString = normalized.translate(SYLLABICS_TO_SRO)
+
+    var normalized = syllabics.replace(finalDotPattern, fixFinalDot)
+    var sroString = syllabicToSRO(normalized)
     if (produceMacrons) {
       return sroString.translate(circumflexToMacrons)
     }
     return sroString
+
+    function fixFinalDot (match) {
+      return SYLLABIC_WITH_DOT[match.group(1)]
+    }
   }
 
   /**
