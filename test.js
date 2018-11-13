@@ -26,9 +26,12 @@ test('Unicode normalization', t => {
   t.is(sro2syllabics(leaf), 'ᓃᐱᕀ')
 })
 
+/* Tests word matching (only match words; do not match English words). */
 test('word matching', convertSemiRoundTrip, 'obviously english text', 'obviously english text')
 test('word matching', convertSemiRoundTrip, 'write nêhiyawêwin', 'write ᓀᐦᐃᔭᐍᐏᐣ')
 test('word matching', convertSemiRoundTrip, '\t namoya  tataspêyihtam. ', '\t ᓇᒧᔭ  ᑕᑕᐢᐯᔨᐦᑕᒼ᙮ ')
+
+test('alternate y-final', convertToSyllabics, 'ᓰᐱᐝ', 'sîpiy')
 
 /**
  * Test macro that tests SRO → syllabics, syllabics → SRO,
@@ -57,4 +60,11 @@ function convertSemiRoundTrip (t, sro, syllabics) {
  */
 function convertToSRO (t, sro, syllabics) {
   t.is(sro2syllabics(sro), syllabics)
+}
+
+/**
+ * Test macro that tests SRO → syllabics.
+ */
+function convertToSyllabics (t, syllabics, sro) {
+  t.is(syllabics2sro(syllabics), sro)
 }
