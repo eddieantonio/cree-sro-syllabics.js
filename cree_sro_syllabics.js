@@ -74,11 +74,13 @@
     if (typeof sandhi === 'undefined' || (sandhi != null && sandhi.hasOwnProperty('__kwargtrans__'))) {
       sandhi = true
     }
-    var transliterateWord = function (match) {
+
+    let transliteration = nfc(sro).replace(wordPattern, transliterateWord)
+    return transliteration.replace(fullStopPattern, '᙮')
+
+    function transliterateWord (match) {
       return transcodeSROWordToSyllabics(match.group(0), hyphens, sandhi)
     }
-    var transliteration = wordPattern.sub(transliterateWord, nfc(sro))
-    return fullStopPattern.sub('᙮', transliteration)
   }
 
   function transcodeSROWordToSyllabics (sroWord, hyphen, sandhi) {
@@ -134,6 +136,7 @@
     return new RegExp(`([${withoutDot}])ᐧ`)
   }())
   const circumflexToMacrons = makeTranslation('êîôâ', 'ēīōā')
+
   function syllabics2sro (syllabics, produceMacrons) {
     if (typeof produceMacrons === 'undefined' || (produceMacrons != null && produceMacrons.hasOwnProperty('__kwargtrans__'))) {
       produceMacrons = false
