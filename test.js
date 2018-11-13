@@ -64,6 +64,16 @@ test('lookalike: U+1466 CANADIAN SYLLABICS T', convertLookalike, 'ᐚᐸ\u1466',
 test('lookalike: U+1541 CANADIAN SYLLABICS SAYISI YI', convertLookalike, 'ᓂᐲ\u1541', 'nipîhk', 'ᓂᐲᕽ')
 test('lookalike: U+1429 CANADIAN SYLLABICS FINAL PLUS', convertLookalike, 'ᓂᐱ\u1429', 'nipiy', 'ᓂᐱᕀ')
 
+/* Test th-dialect */
+test('"wīhthēw" → syllabics', convertSemiRoundTripWithMacrons, 'wīhthēw', 'ᐑᐦᖧᐤ')
+test('"nampithi-sīpīhk" → syllabics', convertSemiRoundTripWithMacrons, 'nampithi-sīpīhk', 'ᓇᒼᐱᖨ ᓰᐲᕽ')
+test('"mithomon" → syllabics', convertSemiRoundTripWithMacrons, 'mithomon', 'ᒥᖪᒧᐣ')
+test('"namōtha" → syllabics', convertSemiRoundTripWithMacrons, 'namōtha', 'ᓇᒨᖬ')
+test('"thāhkan" → syllabics', convertSemiRoundTripWithMacrons, 'thāhkan', 'ᖭᐦᑲᐣ')
+test('"namēpith" → syllabics', convertSemiRoundTripWithMacrons, 'namēpith', 'ᓇᒣᐱᖮ')
+test('"thē thi tho tha thī thō thā" → syllabics', convertSemiRoundTripWithMacrons,
+  'thē thi tho tha thī thō thā', 'ᖧ ᖨ ᖪ ᖬ ᖩ ᖫ ᖭ')
+
 /* ***************************** Test Macros ***************************** */
 
 /**
