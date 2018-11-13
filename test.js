@@ -17,7 +17,7 @@
 
 import test from 'ava'
 
-let { sro2syllabics, syllabics2sro } = require('./')
+let { sro2syllabics, syllabics2sro } = require('./cree-sro-syllabics')
 
 const COMBINING_CIRCUMFLEX = '\u0302'
 
