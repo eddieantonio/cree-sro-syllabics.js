@@ -50,7 +50,14 @@ test('"wîhth-owin" → syllabics', convertToSyllabics, 'wîhth-owin', 'ᐑᐦ�
 
 /* Test full-stop */
 test('test full-stop (all Cree)', convertSemiRoundTrip, 'êtî nitisiyihkâson.', 'ᐁᑏ ᓂᑎᓯᔨᐦᑳᓱᐣ᙮')
-test('test full-stop (mostly English)', convertSemiRoundTrip, 'She told Dr. Thunder: "ninôhtêhkatân."', 'She told Dr. Thunder: "ᓂᓅᐦᑌᐦᑲᑖᐣ᙮"')
+test('test full-stop (mostly English)', convertSemiRoundTrip,
+  'She told Dr. Thunder: "ninôhtêhkatân."', 'She told Dr. Thunder: "ᓂᓅᐦᑌᐦᑲᑖᐣ᙮"')
+
+/* Test final-middle dot. */
+test('"ᐋᐧᐱ ᑭᐦᐃᐤ" → SRO', convertToSRO, 'ᐋᐧᐱ ᑭᐦᐃᐤ', 'wâpi kihiw')
+test('"ᐋᐧᐱ ᑭᐦᐃᐤ" → "ᐚᐱ ᑭᐦᐃᐤ"', t => {
+  t.is(sro2syllabics(syllabics2sro('ᐋᐧᐱ ᑭᐦᐃᐤ')), 'ᐚᐱ ᑭᐦᐃᐤ')
+})
 
 /* ***************************** Test Macros ***************************** */
 
