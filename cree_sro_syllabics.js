@@ -150,15 +150,14 @@
   }())
   const circumflexToMacrons = makeTranslation('êîôâ', 'ēīōā')
 
-  function syllabics2sro (syllabics, produceMacrons) {
-    if (typeof produceMacrons === 'undefined' || (produceMacrons != null && produceMacrons.hasOwnProperty('__kwargtrans__'))) {
-      produceMacrons = false
-    }
+  function syllabics2sro (syllabics, options = {}) {
+    let longAccents = options.longAccents || 'circumflexes'
 
     var normalized = syllabics.replace(finalDotPattern, fixFinalDot)
     var sroString = syllabicToSRO(normalized)
-    if (produceMacrons) {
-      return sroString.translate(circumflexToMacrons)
+
+    if (longAccents === 'macrons') {
+      return circumflexToMacrons(sroString)
     }
     return sroString
 
