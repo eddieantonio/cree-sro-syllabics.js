@@ -3,6 +3,7 @@ Cree SRO/Syllabics
 
 [![Build Status](https://travis-ci.org/eddieantonio/cree-sro-syllabics.js.svg?branch=master)](https://travis-ci.org/eddieantonio/cree-sro-syllabics.js)
 [![npm version](https://badge.fury.io/js/cree-sro-syllabics.svg)](https://badge.fury.io/js/cree-sro-syllabics)
+[![calver YYYY.0M.0D](https://img.shields.io/badge/calver-YYYY.0M.0D-22bfda.svg)](http://calver.org/)
 
 Convert between Western Cree standard Roman orthography (SRO) and syllabics!
 
@@ -84,13 +85,13 @@ What character to use as hyphens. Defaults to `U+202F NARROW NO-BREAK
 SPACE`—a space that is narrower than a word separating space; line
 breaks are not permitted at this space.
 
-Using `-`:
+Using a normal space character:
 
 ```javascript
-CreeSROSyllabics.sro2syllabics('kâ-mahihkani-pimohtêt', { hyphens: '-' })
+CreeSROSyllabics.sro2syllabics('kâ-mahihkani-pimohtêt', { hyphens: ' ' })
 ```
 
-> ᑳ-ᒪᐦᐃᐦᑲᓂ-ᐱᒧᐦᑌᐟ
+> ᑳ ᒪᐦᐃᐦᑲᓂ ᐱᒧᐦᑌᐟ
 
 Using the default:
 
@@ -118,7 +119,8 @@ CreeSROSyllabics.syllabics2sro('ᑖᓂᓯ')
 
 #### `options.longAccents`
 
-Whether to use circumflexes (âêîô) or macrons (āēīō) when transcribing long vowels.
+Whether to produce circumflexes (âêîô) or macrons (āēīō) when
+transliterating long vowels.
 
 Valid options:
 
@@ -132,13 +134,15 @@ Specifying `'macrons'`:
 CreeSROSyllabics.syllabics2sro("ᑖᓂᓯ", { longAccents: 'macrons' })
 ```
 
+> tānisi
+
 Using the defaults (circumflexes):
 
 ```javascript
-CreeSROSyllabics.syllabics2sro("ᑖᓂᓯ", { longAccents: 'macrons' })
+CreeSROSyllabics.syllabics2sro("ᑖᓂᓯ")
 ```
 
-> tānisi
+> tânisi
 
 ### `version`
 
