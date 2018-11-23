@@ -193,14 +193,14 @@
    */
   function makeTranslation (original, replacement) {
     let translation = new Map()
-    for (let [index, source] of Array.from(original).entries()) {
+    Array.prototype.forEach.call(original, function setMap (source, index) {
       translation.set(source, replacement[index] || '')
-    }
+    })
 
     return function (string) {
-      return Array.from(string).map(ch =>
-        translation.has(ch) ? translation.get(ch) : ch
-      ).join('')
+      return Array.prototype.map.call(string, function replace (ch) {
+        return translation.has(ch) ? translation.get(ch) : ch
+      }).join('')
     }
   }
 
