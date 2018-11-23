@@ -151,11 +151,9 @@ final_dot_pattern = re.compile(r'([{without_dot}])ᐧ'.format(
 ))
 
 
-def print_javascript_regexp(name: str, python_regex: re.Pattern):
+def print_javascript_regexp(name: str, python_regex: re.Pattern, flags=''):
     # The variable declaration first
     print('const', name, '=', end=' ')
-
-    flags = ''
 
     if python_regex.flags & re.VERBOSE:
         # Remove comments and whitespace in verbose regexps.
@@ -191,6 +189,6 @@ def uniescape(text: str) -> str:
 
 if __name__ == '__main__':
     print_javascript_regexp('sroPattern', sro_pattern)
-    print_javascript_regexp('wordPattern', word_pattern)
+    print_javascript_regexp('wordPattern', word_pattern, flags='g')
     print_javascript_regexp('fullStopPattern', full_stop_pattern)
     print_javascript_regexp('finalDotPattern', final_dot_pattern)
