@@ -59,10 +59,15 @@
     }
     // Add a few alternate and lookalike characters to the lookup, as well as
     // the syllabics "hyphen".
-    // TODO: cannot use Object.assign!
-    Object.assign(lookup, {
+    let alternates = {
       'ᐝ': 'y', '᙮': '.', 'ᑦ': 'm', 'ᕁ': 'hk', 'ᐩ': 'y', '\u202f': '-'
-    })
+    }
+    for (syl in alternates) {
+      if (!alternates.hasOwnProperty(syl)) {
+        continue
+      }
+      lookup[syl] = alternates[syl]
+    }
     return lookup
   })()
   // Convert SYLLABIC + FINAL DOT into SYLLABIC WITH DOT
@@ -82,8 +87,7 @@
     // lookup here that fallsback to sro2syllabicsLookup.
     let lookup = Object.create(sro2syllabicsLookup)
     // The customization is what the hyphen should be converted to:
-    // TODO: cannot use Object.assign!
-    Object.assign(lookup, { '-': hyphens })
+    lookup['-'] = hyphens
 
     let transliteration = nfc(sro).replace(wordPattern, transliterateWord)
     return transliteration.replace(fullStopPattern, '᙮')
