@@ -76,7 +76,17 @@
   // A few character translation functions.
   const circumflexToMacrons = makeTranslation('êîôâ', 'ēīōā')
   const translateAltForms = makeTranslation("eē'īōā", 'êêiîôâ')
-  const syllabicToSRO = makeTranslation(Object.keys(syllabics2sroLookup), Object.values(syllabics2sroLookup))
+  const syllabicToSRO = makeTranslation(Object.keys(syllabics2sroLookup), (function values () {
+    // Work around for lack of Object.values() on some platforms.
+    var a = []
+    var syl
+    for (syl in syllabics2sroLookup) {
+      if (syllabics2sroLookup.hasOwnProperty(syl)) {
+        a.push(syllabics2sroLookup[syl])
+      }
+    }
+    return a
+  }()))
 
   // ========================= Primary Exports ========================= \\
 
