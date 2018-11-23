@@ -173,31 +173,6 @@
     }
   }
 
-  /**
-   * Template tag for creating defining regular expressions with whitespace
-   * and placeholders. Allows for (somewhat) more readable regexps.
-   */
-  function verboseRegExp (strings, ...placeholders) {
-    let normalizedStrings = strings.map(removeWhitespace)
-    let normalizedPlaceholders = placeholders.map(removeWhitespace)
-    let regexpParts = []
-
-    // there are always strings.length + 1 placeholders
-    // the first string is either '' or the prefix
-    regexpParts.push(normalizedStrings[0])
-    // the last string is either '' or the suffix
-    for (let [index, placeholder] of normalizedPlaceholders.entries()) {
-      regexpParts.push(placeholder)
-      regexpParts.push(normalizedStrings[index + 1])
-    }
-
-    return new RegExp(regexpParts.join(''))
-
-    function removeWhitespace (string) {
-      return string.replace(/\s/g, '')
-    }
-  }
-
   if (typeof module !== 'undefined') {
     /* Export for Node/CommonJS */
     module.exports = exports
