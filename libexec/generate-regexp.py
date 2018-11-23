@@ -108,7 +108,7 @@ BEGIN_WORD = r'''
 (?:
         ^  # Either the start of a string; or,
         |  # at the edge of "letters".
-        (?<=[^a-zêioaîôâeēī'ōā])
+        ([^a-zêîôâēī'ōā])
 )
 '''
 END_WORD = r'''
@@ -122,7 +122,7 @@ WORD = fr'''
     # CODA before the hyphen to account for Sandhi.
     # It's possible to accept TWO codas using this formulation, but
     # I think that loss of precision is okay.
-    {BEGIN_WORD} {MORPHEME} (?: (?:{CODA})?-{MORPHEME})* {END_WORD}
+    {BEGIN_WORD} ({MORPHEME} (?: (?:{CODA})?-{MORPHEME})*) {END_WORD}
 '''
 word_pattern = re.compile(WORD, re.IGNORECASE | re.VERBOSE)
 
