@@ -129,8 +129,8 @@ word_pattern = re.compile(WORD, re.IGNORECASE | re.VERBOSE)
 # This regex prevents matching EVERY period, instead only matching periods
 # after Cree words, or, as an exception, as the only item in a string.
 full_stop_pattern = re.compile(r'''
-    (?<=[\u1400-\u167F])[.] |   # Match a full-stop after syllabics
-    ^[.]$                       # or match as the only item.
+    ([\u1400-\u167F])[.] |  # Match a full-stop after syllabics
+    ^[.]$                   # or match as the only item.
 ''', re.VERBOSE)
 
 # For use when converting SYLLABIC + FINAL MIDDLE DOT into the syllabic
