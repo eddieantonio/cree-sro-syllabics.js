@@ -94,7 +94,8 @@
   // ========================= Primary Exports ========================= \\
 
   // EXPORT: Convert SRO to syllabics:
-  function sro2syllabics (sro, options = {}) {
+  function sro2syllabics (sro, options) {
+    options = options || {}
     let hyphens = options.hyphens || DEFAULT_SRO2SYLLABICS_OPTIONS.hyphens
     // Instead of using sro2syllabicsLookup directly, create a customizable
     // lookup here that fallsback to sro2syllabicsLookup.
@@ -148,7 +149,8 @@
   }
 
   // EXPORT: Convert syllabics to SRO:
-  function syllabics2sro (syllabics, options = {}) {
+  function syllabics2sro (syllabics, options) {
+    options = options || {}
     let longAccents = options.longAccents || DEFAULT_SYLLABICS2SRO_OPTIONS.longAccents
 
     var normalized = syllabics.replace(finalDotPattern, fixFinalDot)
