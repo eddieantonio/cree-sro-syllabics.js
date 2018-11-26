@@ -21,8 +21,8 @@
 
   // What functions and constants to export:
   let exports = {
-    sro2syllabics,
-    syllabics2sro,
+    sro2syllabics: sro2syllabics,
+    syllabics2sro: syllabics2sro,
     version: VERSION
   }
 
