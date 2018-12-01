@@ -3,7 +3,7 @@ Cree SRO/Syllabics
 
 [![Build Status](https://travis-ci.org/eddieantonio/cree-sro-syllabics.js.svg?branch=master)](https://travis-ci.org/eddieantonio/cree-sro-syllabics.js)
 [![npm version](https://badge.fury.io/js/cree-sro-syllabics.svg)](https://badge.fury.io/js/cree-sro-syllabics)
-[![calver YYYY.0M.0D](https://img.shields.io/badge/calver-YYYY.0M.0D-22bfda.svg)](http://calver.org/)
+[![calver YYYY.MM.DD](https://img.shields.io/badge/calver-YYYY.0M.0D-22bfda.svg)](http://calver.org/)
 
 Convert between Western Cree standard Roman orthography (SRO) and syllabics!
 
