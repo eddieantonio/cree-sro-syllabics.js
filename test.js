@@ -74,6 +74,7 @@ test('"wîhth-owin" → syllabics', convertToSyllabics, 'wîhth-owin', 'ᐑᐦ�
 test('test full-stop (all Cree)', convertSemiRoundTrip, 'êtî nitisiyihkâson.', 'ᐁᑏ ᓂᑎᓯᔨᐦᑳᓱᐣ᙮')
 test('test full-stop (mostly English)', convertSemiRoundTrip,
   'She told Dr. Thunder: "ninôhtêhkatân."', 'She told Dr. Thunder: "ᓂᓅᐦᑌᐦᑲᑖᐣ᙮"')
+test('test full-stop (multiple)', convertSemiRoundTrip, 'tânisi. êtî nitisiyihkâson. ', 'ᑖᓂᓯ᙮ ᐁᑏ ᓂᑎᓯᔨᐦᑳᓱᐣ᙮ ')
 
 /* Test final-middle dot. */
 test('"ᐋᐧᐱ ᑭᐦᐃᐤ" → SRO', convertToSRO, 'ᐋᐧᐱ ᑭᐦᐃᐤ', 'wâpi kihiw')
