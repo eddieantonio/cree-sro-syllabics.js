@@ -190,5 +190,5 @@ def uniescape(text: str) -> str:
 if __name__ == '__main__':
     print_javascript_regexp('sroPattern', sro_pattern)
     print_javascript_regexp('wordPattern', word_pattern, flags='g')
-    print_javascript_regexp('fullStopPattern', full_stop_pattern)
+    print_javascript_regexp('fullStopPattern', full_stop_pattern, flags='g')
     print_javascript_regexp('finalDotPattern', final_dot_pattern)
