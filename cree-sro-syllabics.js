@@ -17,7 +17,7 @@
 
 (function () {
   // EXPORT: version
-  const VERSION = '2018.12.01'
+  const VERSION = '2018.12.2'
 
   // What functions and constants to export:
   let exports = {
