@@ -105,6 +105,11 @@ test('"nwe nwa nwā" → syllabics', convertToSyllabics, 'nwe nwa nwā', 'ᓊ �
 /* Test adjacent "vowels" */
 test(`"I'm" → syllabics`, convertToSyllabics, "I'm", "I'm")
 
+/* Test short-i elision: https://github.com/eddieantonio/cree-sro-syllabics.js/issues/8 */
+test('Using U+0027 APOSTROPHE', convertToSyllabics, "tan'si", 'ᑕᓂᓯ')
+/* iPhone's keyboard produces this by default:  */
+test('Using U+2019 RIGHT SINGLE QUOTATION', convertToSyllabics, 'tan’si', 'ᑕᓂᓯ')
+
 /* ***************************** Test Macros ***************************** */
 
 /**
