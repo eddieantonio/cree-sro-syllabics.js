@@ -28,7 +28,7 @@ import re
 # https://github.com/eddieantonio/cree-sro-syllabics/tree/v2018.11.08
 CONSONANT = '[ptkcshmnyw]|th'
 STRICT_VOWEL = '[êioaîôâ]'
-VOWEL = f"{STRICT_VOWEL}|[eēī'ōā]"
+VOWEL = f"{STRICT_VOWEL}|[eēī'’ōā]"
 
 # Match an SRO syllable.
 sro_pattern = re.compile(fr'''
@@ -108,12 +108,12 @@ BEGIN_WORD = r'''
 (?:
         ^  # Either the start of a string; or,
         |  # at the edge of "letters".
-        ([^a-zêîôâēī'ōā])
+        ([^a-zêîôâēī'’ōā])
 )
 '''
 END_WORD = r'''
 (?:
-        (?=[^a-zêioaîôâeēī'ōā]) |
+        (?=[^a-zêioaîôâeēī'’ōā]) |
         $
 )
 '''
