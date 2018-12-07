@@ -81,6 +81,8 @@ test('"ᐋᐧᐱ ᑭᐦᐃᐤ" → SRO', convertToSRO, 'ᐋᐧᐱ ᑭᐦᐃᐤ',
 test('"ᐋᐧᐱ ᑭᐦᐃᐤ" → "ᐚᐱ ᑭᐦᐃᐤ"', t => {
   t.is(sro2syllabics(syllabics2sro('ᐋᐧᐱ ᑭᐦᐃᐤ')), 'ᐚᐱ ᑭᐦᐃᐤ')
 })
+/* Regression: https://github.com/eddieantonio/cree-sro-syllabics.js/issues/9 */
+test('"ᐃᐢᑫᐧᐤ ᐊᐱᐦᑕᐃᐧᑯᓯᓴᐣ" -> sro', convertToSRO, 'ᐃᐢᑫᐧᐤ ᐊᐱᐦᑕᐃᐧᑯᓯᓴᐣ', 'iskwêw apihtawikosisan')
 
 /* Test lookalikes */
 test('lookalike: U+1466 CANADIAN SYLLABICS T', convertLookalike, 'ᐚᐸ\u1466', 'wâpam', 'ᐚᐸᒼ')
