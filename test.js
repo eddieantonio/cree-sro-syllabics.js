@@ -21,6 +21,14 @@ let { sro2syllabics, syllabics2sro } = require('./cree-sro-syllabics')
 
 const COMBINING_CIRCUMFLEX = '\u0302'
 
+/* Create automatic titles for some test cases. */
+convertSemiRoundTrip.title = (_providedTitle, sro, syllabics) =>
+  `${sro} ↔ ${syllabics}`
+convertSemiRoundTripWithMacrons.title = (_providedTitle, sro, syllabics) =>
+  `${sro} ↔ ${syllabics}`
+
+// ////////////////////////////// TEST CASES ////////////////////////////// //
+
 /* Basic, full word tests. */
 test('"acimosis" → syllabics', convertRoundTrip, 'acimosis', 'ᐊᒋᒧᓯᐢ')
 test('"atahk" → syllabics', convertRoundTrip, 'atahk', 'ᐊᑕᕽ')
@@ -44,14 +52,14 @@ test('Unicode normalization', t => {
 })
 
 /* Tests word matching (only match words; do not match English words). */
-test('word matching', convertSemiRoundTrip, 'obviously english text', 'obviously english text')
-test('word matching', convertSemiRoundTrip, 'write nêhiyawêwin', 'write ᓀᐦᐃᔭᐍᐏᐣ')
-test('word matching', convertSemiRoundTrip, '\t namoya  tataspêyihtam. ', '\t ᓇᒧᔭ  ᑕᑕᐢᐯᔨᐦᑕᒼ᙮ ')
+test(convertSemiRoundTrip, 'obviously english text', 'obviously english text')
+test(convertSemiRoundTrip, 'write nêhiyawêwin', 'write ᓀᐦᐃᔭᐍᐏᐣ')
+test(convertSemiRoundTrip, '\t namoya  tataspêyihtam. ', '\t ᓇᒧᔭ  ᑕᑕᐢᐯᔨᐦᑕᒼ᙮ ')
 
 test('alternate y-final', convertToSRO, 'ᓰᐱᐝ', 'sîpiy')
 
-test('test macrons', convertSemiRoundTripWithMacrons, 'yōtinipēstāw', 'ᔫᑎᓂᐯᐢᑖᐤ')
-test('test macrons', convertSemiRoundTripWithMacrons, 'īkatē', 'ᐄᑲᑌ')
+test(convertSemiRoundTripWithMacrons, 'yōtinipēstāw', 'ᔫᑎᓂᐯᐢᑖᐤ')
+test(convertSemiRoundTripWithMacrons, 'īkatē', 'ᐄᑲᑌ')
 
 /* Test hyphens */
 test('"paskwâwi-mostos" → syllabics', convertRoundTrip, 'paskwâwi-mostos', 'ᐸᐢᒁᐏ ᒧᐢᑐᐢ')
