@@ -2,6 +2,7 @@ Cree SRO/Syllabics
 ==================
 
 [![Build Status](https://travis-ci.org/eddieantonio/cree-sro-syllabics.js.svg?branch=master)](https://travis-ci.org/eddieantonio/cree-sro-syllabics.js)
+[![codecov](https://codecov.io/gh/eddieantonio/cree-sro-syllabics.js/branch/master/graph/badge.svg)](https://codecov.io/gh/eddieantonio/cree-sro-syllabics.js)
 [![npm version](https://badge.fury.io/js/cree-sro-syllabics.svg)](https://badge.fury.io/js/cree-sro-syllabics)
 [![calver YYYY.MM.DD](https://img.shields.io/badge/calver-YYYY.MM.DD-22bfda.svg)](http://calver.org/)
 
