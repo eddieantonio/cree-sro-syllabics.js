@@ -22,16 +22,13 @@ let { sro2syllabics, syllabics2sro } = require('./cree-sro-syllabics')
 const COMBINING_CIRCUMFLEX = '\u0302'
 
 /* Create automatic titles for some test cases. */
-convertSemiRoundTrip.title = (providedTitle, sro, syllabics) =>
-  providedTitle || `“${sro}” ↔ “${syllabics}”`
-convertSemiRoundTripWithMacrons.title = (providedTitle, sro, syllabics) =>
-  `“${sro}” ↔ “${syllabics}”`
-convertRoundTrip.title = (_providedTitle, sro, syllabics) =>
-  `“${sro}” ⇔ “${syllabics}”`
-convertToSyllabics.title = (comment, sro, syllabics) =>
-  `“${sro}” → “${syllabics}”` + (comment ? ` (${comment})` : '')
-convertToSRO.title = (comment, syllabics, sro) =>
-  `“${syllabics}” → “${sro}” (${comment})`
+let createMacroTitle = (operator) => (comment, a, b) =>
+  `“${a}” ${operator} “${b}”` + (comment ? ` (${comment})` : '')
+convertSemiRoundTrip.title = createMacroTitle('↔')
+convertSemiRoundTripWithMacrons.title = createMacroTitle('↔')
+convertRoundTrip.title = createMacroTitle('⇔')
+convertToSyllabics.title = createMacroTitle('→')
+convertToSRO.title = createMacroTitle('→')
 
 // ////////////////////////////// TEST CASES ////////////////////////////// //
 
