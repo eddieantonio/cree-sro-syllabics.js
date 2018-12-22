@@ -47,8 +47,7 @@ test(convertRoundTrip, 'tirêyl', 'ᑎᕒᐁᕀᓬ')
 test(convertToSyllabics, "Tân'si", 'ᑖᓂᓯ')
 test(convertToSyllabics, 'Maskekosihk', 'ᒪᐢᑫᑯᓯᕽ')
 
-// TODO: test as if String.prototype.normalize() does not exist.
-test('Unicode normalization', t => {
+test('Unicode normalization using String#normalize()', t => {
   let water = 'nipiy'
   let leaf = 'ni' + COMBINING_CIRCUMFLEX + 'piy'
 
@@ -57,6 +56,11 @@ test('Unicode normalization', t => {
   t.is(sro2syllabics(water), 'ᓂᐱᕀ')
   t.is(sro2syllabics(leaf), 'ᓃᐱᕀ')
 })
+
+// TODO: test as if String.prototype.normalize() does not exist.
+// NB: this is difficult, as cree-sro-syllabics decides which NFC to use
+// AT IMPORT TIME. So you can't just delete String#normalize() in one test
+// without it trying to use String#normalize() anyway.
 
 /* Tests word matching (only match words; do not match English words). */
 test(convertSemiRoundTrip, 'obviously english text', 'obviously english text')

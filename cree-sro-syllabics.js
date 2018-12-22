@@ -16,6 +16,8 @@
  */
 
 (function () {
+  'use strict'
+
   // EXPORT: version
   const VERSION = '2018.12.7'
 
@@ -53,7 +55,7 @@
     var syl // IE11 doesn't handle `let` in for-loops properly :(
     let lookup = {}
     // IE11 also doesn't do for-of, so I need for-in, with the
-    // ritual .hasOwnProperty() checK :C
+    // ritual .hasOwnProperty() check :C
     for (var sro in sro2syllabicsLookup) {
       /* istanbul ignore if */
       if (!sro2syllabicsLookup.hasOwnProperty(sro)) {
