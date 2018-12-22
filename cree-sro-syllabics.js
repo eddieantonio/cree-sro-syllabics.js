@@ -52,7 +52,10 @@
   const syllabics2sroLookup = (function () {
     var syl // IE11 doesn't handle `let` in for-loops properly :(
     let lookup = {}
+    // IE11 also doesn't do for-of, so I need for-in, with the
+    // ritual .hasOwnProperty() checK :C
     for (var sro in sro2syllabicsLookup) {
+      /* istanbul ignore if */
       if (!sro2syllabicsLookup.hasOwnProperty(sro)) {
         continue
       }
@@ -65,11 +68,12 @@
     let alternates = {
       'ᐝ': 'y', '᙮': '.', 'ᑦ': 'm', 'ᕁ': 'hk', 'ᐩ': 'y', '\u202f': '-'
     }
+    // Use for-in and .hasOwnProperty() check for IE11 compatibility 😡
     for (syl in alternates) {
-      if (!alternates.hasOwnProperty(syl)) {
-        continue
+      /* istanbul ignore else */
+      if (alternates.hasOwnProperty(syl)) {
+        lookup[syl] = alternates[syl]
       }
-      lookup[syl] = alternates[syl]
     }
     return lookup
   })()
@@ -221,6 +225,7 @@
     }
   }
 
+  /* istanbul ignore next */
   if (typeof module !== 'undefined') {
     /* Export for Node/CommonJS */
     module.exports = exports
