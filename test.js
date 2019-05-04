@@ -124,6 +124,14 @@ test('Using U+0027 APOSTROPHE', convertToSyllabics, "tan'si", 'ᑕᓂᓯ')
 /* iPhone's keyboard produces this by default:  */
 test('Using U+2019 RIGHT SINGLE QUOTATION', convertToSyllabics, 'tan’si', 'ᑕᓂᓯ')
 
+/* Test Vh-V sandi (https://github.com/eddieantonio/cree-sro-syllabics/issues/17) */
+
+test(convertToSyllabics, 'âh-ayinânêw', 'ᐋᐦᐊᔨᓈᓀᐤ');
+test(convertToSyllabics, 'âh-ayîtaw', 'ᐋᐦᐊᔩᑕᐤ');
+test(convertToSyllabics, 'mistah-âya', 'ᒥᐢᑕᐦᐋᔭ');
+// This is a fake word, but it tests an edge case:
+test(convertToSyllabics, 'atihw-âya', 'ᐊᑎᐦᐚᔭ');
+
 /* ***************************** Test Macros ***************************** */
 
 /**
