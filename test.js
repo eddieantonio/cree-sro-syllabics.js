@@ -126,7 +126,6 @@ test('Using U+0027 APOSTROPHE', convertToSyllabics, "tan'si", 'ᑕᓂᓯ')
 test('Using U+2019 RIGHT SINGLE QUOTATION', convertToSyllabics, 'tan’si', 'ᑕᓂᓯ')
 
 /* Test Vh-V sandi (https://github.com/eddieantonio/cree-sro-syllabics/issues/17) */
-
 test(convertToSyllabics, 'âh-ayinânêw', 'ᐋᐦᐊᔨᓈᓀᐤ');
 test(convertToSyllabics, 'âh-ayîtaw', 'ᐋᐦᐊᔩᑕᐤ');
 test(convertToSyllabics, 'mistah-âya', 'ᒥᐢᑕᐦᐋᔭ');
