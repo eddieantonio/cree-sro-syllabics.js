@@ -39,6 +39,7 @@ test(convertRoundTrip, 'mêriy', 'ᒣᕒᐃᕀ')
 test(convertRoundTrip, 'wîstihkêw', 'ᐑᐢᑎᐦᑫᐤ')
 test(convertRoundTrip, 'nêhiyawêwin', 'ᓀᐦᐃᔭᐍᐏᐣ')
 test(convertRoundTrip, 'tirêyl', 'ᑎᕒᐁᕀᓬ')
+test(convertRoundTrip, 'mitêh', 'ᒥᑌᐦ')
 
 /* Spelling relaxation tests. */
 test(convertToSyllabics, "Tân'si", 'ᑖᓂᓯ')

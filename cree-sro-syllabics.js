@@ -139,7 +139,7 @@
           syllable = onset + vowel
           // Special case for sandhi hw?-V cases: Just transcribe
           // the 'h'/ᐦ part first, then run pretend that this
-          // syllable is just the vowel.
+          // syllable is just the (optional w and) vowel.
           if (onset[0] === 'h') {
             parts.push('ᐦ');
             syllable = syllable.substr(1);
