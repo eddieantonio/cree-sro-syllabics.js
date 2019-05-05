@@ -19,7 +19,7 @@
   'use strict'
 
   // EXPORT: version
-  const VERSION = '2018.5.4'
+  const VERSION = '2019.5.5'
 
   // What functions and constants to export:
   let exports = {
