@@ -132,6 +132,12 @@ test(convertToSyllabics, 'mistah-âya', 'ᒥᐢᑕᐦᐋᔭ');
 // This is a fake word, but it tests an edge case:
 test(convertToSyllabics, 'atihw-âya', 'ᐊᑎᐦᐚᔭ');
 
+/* Test that the version number is consistent with the package.  */
+test('version number consistency', t => {
+  let moduleVersion = require('./cree-sro-syllabics').version;
+  t.is(require('./package.json').version, moduleVersion);
+});
+
 /* ***************************** Test Macros ***************************** */
 
 /**
