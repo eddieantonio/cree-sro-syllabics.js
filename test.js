@@ -105,7 +105,7 @@ test('lookalike: U+1466 CANADIAN SYLLABICS T', convertLookalike, 'ᐚᐸ\u1466',
 test('lookalike: U+1541 CANADIAN SYLLABICS SAYISI YI', convertLookalike, 'ᓂᐲ\u1541', 'nipîhk', 'ᓂᐲᕽ')
 test('lookalike: U+1429 CANADIAN SYLLABICS FINAL PLUS', convertLookalike, 'ᓂᐱ\u1429', 'nipiy', 'ᓂᐱᕀ')
 
-/* Test th-dialect */
+/* Test th-dialect (thV) */
 test(convertSemiRoundTripWithMacrons, 'wīhthēw', 'ᐑᐦᖧᐤ')
 test(convertSemiRoundTripWithMacrons, 'nampithi-sīpīhk', 'ᓇᒼᐱᖨ ᓰᐲᕽ')
 test(convertSemiRoundTripWithMacrons, 'mithomon', 'ᒥᖪᒧᐣ')
@@ -113,6 +113,10 @@ test(convertSemiRoundTripWithMacrons, 'namōtha', 'ᓇᒨᖬ')
 test(convertSemiRoundTripWithMacrons, 'thāhkan', 'ᖭᐦᑲᐣ')
 test(convertSemiRoundTripWithMacrons, 'namēpith', 'ᓇᒣᐱᖮ')
 test(convertSemiRoundTripWithMacrons, 'thē thi tho tha thī thō thā', 'ᖧ ᖨ ᖪ ᖬ ᖩ ᖫ ᖭ')
+
+/* Test th-dialect (thwV) */
+test(convertSemiRoundTripWithMacrons, 'mithwāsin', 'ᒥᙽᓯᐣ')
+test(convertSemiRoundTripWithMacrons, 'thwē thwi thwo thwa thwī thwō thwā', 'ᙷ ᙸ ᙺ ᙼ ᙹ ᙻ ᙽ')
 
 /* Test rare nwV forms */
 test('rare nwV forms', convertToSyllabics, 'nwe nwa nwā', 'ᓊ ᓌ ᓎ')
@@ -137,6 +141,7 @@ test('version number consistency', t => {
   let moduleVersion = require('./cree-sro-syllabics').version;
   t.is(require('./package.json').version, moduleVersion);
 });
+
 
 /* ***************************** Test Macros ***************************** */
 

@@ -47,16 +47,16 @@ sro_pattern = re.compile(fr'''
     # NOTE: List the longer syllable first, since
     # the regular expression will match the first alternative that will
     # work—which must be the longest match!
-    thê|thi|tho|tha|thî|thô|thâ                            |th|
-    wê |wi |wo |wa |wî |wô |wâ                             |w |
-    pê |pi |po |pa |pî |pô |pâ |pwê|pwi|pwo|pwa|pwî|pwô|pwâ|p |
-    tê |ti |to |ta |tî |tô |tâ |twê|twi|two|twa|twî|twô|twâ|t |
-    kê |ki |ko |ka |kî |kô |kâ |kwê|kwi|kwo|kwa|kwî|kwô|kwâ|k |
-    cê |ci |co |ca |cî |cô |câ |cwê|cwi|cwo|cwa|cwî|cwô|cwâ|c |
-    mê |mi |mo |ma |mî |mô |mâ |mwê|mwi|mwo|mwa|mwî|mwô|mwâ|m |
-    nê |ni |no |na |nî |nô |nâ |nwê|nwa        |nwâ        |n |
-    sê |si |so |sa |sî |sô |sâ |swê|swi|swo|swa|swî|swô|swâ|s |
-    yê |yi |yo |ya |yî |yô |yâ |ywê|ywi|ywo|ywa|ywî|ywô|ywâ|y |
+    thê|thi|tho|tha|thî|thô|thâ|thwê|thwi|thwo|thwa|thwî|thwô|thwâ|th|
+    wê |wi |wo |wa |wî |wô |wâ                                    |w |
+    pê |pi |po |pa |pî |pô |pâ |pwê |pwi |pwo |pwa |pwî |pwô |pwâ |p |
+    tê |ti |to |ta |tî |tô |tâ |twê |twi |two |twa |twî |twô |twâ |t |
+    kê |ki |ko |ka |kî |kô |kâ |kwê |kwi |kwo |kwa |kwî |kwô |kwâ |k |
+    cê |ci |co |ca |cî |cô |câ |cwê |cwi |cwo |cwa |cwî |cwô |cwâ |c |
+    mê |mi |mo |ma |mî |mô |mâ |mwê |mwi |mwo |mwa |mwî |mwô |mwâ |m |
+    nê |ni |no |na |nî |nô |nâ |nwê |nwa           |nwâ           |n |
+    sê |si |so |sa |sî |sô |sâ |swê |swi |swo |swa |swî |swô |swâ |s |
+    yê |yi |yo |ya |yî |yô |yâ |ywê |ywi |ywo |ywa |ywî |ywô |ywâ |y |
     h|l|r|
     ê|i|î|o|ô|a|â|
     -
@@ -73,8 +73,8 @@ sro_pattern = re.compile(fr'''
 # For more information, see:
 # https://en.wikipedia.org/wiki/Plains_Cree#Phonotactics
 WORD_INITIAL = r'''
-    [ptkcmnsyh]w? |    # consonants that allow 'w' after
-    (?:th|[rl]) |  # consonants that don't
+    (?:[ptkcmnsyh]|th)w? |    # consonants that allow 'w' after
+    [rl] |  # consonants that don't
     w |
     # can start with no consonant.
 '''
