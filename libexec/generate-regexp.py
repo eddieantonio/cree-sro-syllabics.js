@@ -94,8 +94,9 @@ WORD_MEDIAL = r"""
 WORD_FINAL = r"""
     [hs]? (?:[ptcksmnwy]|th) |
     h |
-    [yw]? [rl]  # for loan word
-    |  # can end with no consonant
+    kw | # Woods Cree -kw abbreviations
+    [yw]? [rl] | # for loan word
+    # can end with no consonant
 """
 
 # NOTE: VOWEL is defined way near the top of the file.
