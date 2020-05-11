@@ -142,6 +142,9 @@ test('version number consistency', t => {
   t.is(require('./package.json').version, moduleVersion);
 });
 
+/* Regression: abbreviated forms in th-dialect (thanks, Bill Cook!) */
+test(convertRoundTrip, 'ikw', 'ᐃᐠᐤ')
+test(convertRoundTrip, 'pokw', 'ᐳᐠᐤ')
 
 /* ***************************** Test Macros ***************************** */
 
