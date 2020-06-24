@@ -35,10 +35,10 @@ convertToSRO.title = createMacroTitle('→')
 /* Basic, full word tests. */
 test(convertRoundTrip, 'acimosis', 'ᐊᒋᒧᓯᐢ')
 test(convertRoundTrip, 'atahk', 'ᐊᑕᕽ')
-test(convertRoundTrip, 'mêriy', 'ᒣᕒᐃᕀ')
+test(convertRoundTrip, 'mêriy', 'ᒣᕒᐃᐩ')
 test(convertRoundTrip, 'wîstihkêw', 'ᐑᐢᑎᐦᑫᐤ')
 test(convertRoundTrip, 'nêhiyawêwin', 'ᓀᐦᐃᔭᐍᐏᐣ')
-test(convertRoundTrip, 'tirêyl', 'ᑎᕒᐁᕀᓬ')
+test(convertRoundTrip, 'tirêyl', 'ᑎᕒᐁᐩᓬ')
 test(convertRoundTrip, 'mitêh', 'ᒥᑌᐦ')
 
 /* Spelling relaxation tests. */
@@ -51,8 +51,8 @@ test('Unicode normalization using String#normalize()', t => {
 
   t.not(water, leaf)
   t.not(sro2syllabics(water), sro2syllabics(leaf))
-  t.is(sro2syllabics(water), 'ᓂᐱᕀ')
-  t.is(sro2syllabics(leaf), 'ᓃᐱᕀ')
+  t.is(sro2syllabics(water), 'ᓂᐱᐩ')
+  t.is(sro2syllabics(leaf), 'ᓃᐱᐩ')
 })
 
 // TODO: test as if String.prototype.normalize() does not exist.
@@ -72,7 +72,7 @@ test(convertSemiRoundTripWithMacrons, 'īkatē', 'ᐄᑲᑌ')
 
 /* Test hyphens */
 test(convertRoundTrip, 'paskwâwi-mostos', 'ᐸᐢᒁᐏ ᒧᐢᑐᐢ')
-test(convertRoundTrip, 'amiskwaciy-waskahikan', 'ᐊᒥᐢᑿᒋᕀ ᐘᐢᑲᐦᐃᑲᐣ')
+test(convertRoundTrip, 'amiskwaciy-waskahikan', 'ᐊᒥᐢᑿᒋᐩ ᐘᐢᑲᐦᐃᑲᐣ')
 test(convertRoundTrip, 'kâ-mahihkani-pimohtêt isiyihkâsow', 'ᑳ ᒪᐦᐃᐦᑲᓂ ᐱᒧᐦᑌᐟ ᐃᓯᔨᐦᑳᓱᐤ')
 
 test('supplying custom hyphens', t => {
@@ -103,7 +103,8 @@ test('Regression: GH-9', convertToSRO, 'ᐃᐢᑫᐧᐤ ᐊᐱᐦᑕᐃᐧᑯᓯ
 /* Test lookalikes */
 test('lookalike: U+1466 CANADIAN SYLLABICS T', convertLookalike, 'ᐚᐸ\u1466', 'wâpam', 'ᐚᐸᒼ')
 test('lookalike: U+1541 CANADIAN SYLLABICS SAYISI YI', convertLookalike, 'ᓂᐲ\u1541', 'nipîhk', 'ᓂᐲᕽ')
-test('lookalike: U+1429 CANADIAN SYLLABICS FINAL PLUS', convertLookalike, 'ᓂᐱ\u1429', 'nipiy', 'ᓂᐱᕀ')
+// See: https://github.com/UAlbertaALTLab/nehiyawewin-syllabics/issues/2
+test('lookalike: U+1429 CANADIAN SYLLABICS WEST-CREE Y', convertLookalike, 'ᓂᐱ\u1540', 'nipiy', 'ᓂᐱᐩ')
 
 /* Test th-dialect (thV) */
 test(convertSemiRoundTripWithMacrons, 'wīhthēw', 'ᐑᐦᖧᐤ')
