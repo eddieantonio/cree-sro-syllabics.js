@@ -32,7 +32,8 @@
 
   // Default options for sro2syllabics() and syllabics2sro
   const DEFAULT_SRO2SYLLABICS_OPTIONS = {
-    hyphens: '\u202f' // U+202F NARROW NO-BREAK SPACE, preferred by syllabics writers
+    hyphens: '\u202f', // U+202F NARROW NO-BREAK SPACE, preferred by syllabics writers
+    finalHK: 'x', // by default use ᕽ as the word-final hk. Maskwacîs uses ᐦᐠ instead.
   }
   const DEFAULT_SYLLABICS2SRO_OPTIONS = {
     longAccents: 'circumflexes'
@@ -103,6 +104,22 @@
   function sro2syllabics (sro, options) {
     options = options || {}
     let hyphens = options.hyphens || DEFAULT_SRO2SYLLABICS_OPTIONS.hyphens
+
+    let hk;
+    switch (options.finalHK) {
+      case "hk":
+        hk = "ᐦᐠ"
+        break
+
+      case "x":
+      case undefined:
+        hk = "ᕽ"
+        break
+
+      default:
+        throw new Error('final hk must be either "hk" or "x"')
+    }
+
     // Instead of using sro2syllabicsLookup directly, create a customizable
     // lookup here that fallsback to sro2syllabicsLookup.
     let lookup = Object.create(sro2syllabicsLookup)
@@ -156,7 +173,7 @@
 
       if (endsWithHK(parts)) {
         // Replace last two charcters with 'hk' syllabic
-        parts = parts.slice(0, parts.length - 2).concat('ᕽ')
+        parts = parts.slice(0, parts.length - 2).concat(hk)
       }
 
       return parts.join('')
