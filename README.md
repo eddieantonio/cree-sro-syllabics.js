@@ -103,6 +103,38 @@ CreeSROSyllabics.sro2syllabics('kâ-mahihkani-pimohtêt')
 > ᑳ ᒪᐦᐃᐦᑲᓂ ᐱᒧᐦᑌᐟ
 
 
+#### `options.finalHK`
+
+What character use as the word-final “hk” (e.g., in locatives and
+certain conjunct mode verb forms). Use either `"x"` (default) or `"hk"`.
+
+The default is to use the «ᕽ» syllabic:
+
+```javascript
+CreeSROSyllabics.sro2syllabics('sâwanohk')
+```
+
+> ᓵᐘᓄᕽ
+
+This is equivalent to providing `{ finalHK: "x" }`:
+
+```javascript
+CreeSROSyllabics.sro2syllabics('sâwanohk', { finalHK: "x" })
+```
+
+> ᓵᐘᓄᕽ
+    
+However, some communities (like Maskwacîs) do not use the «ᕽ» syllabic,
+instead using «ᐦᐠ». You can specify `{ finalHK: "hk" }` to get this
+behaviour instead:
+
+```javascript
+CreeSROSyllabics.sro2syllabics('sâwanohk', { finalHK: "hk" })
+```
+
+> ᓵᐘᓄᐦᐠ
+
+
 ### `syllabics2sro()`
 
 ```typescript
