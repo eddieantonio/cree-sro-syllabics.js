@@ -4,8 +4,7 @@
   "description": "Convert Western Cree SRO to syllabics",
   "main": "cree-sro-syllabics.js",
   "scripts": {
-    "test": "nyc --reporter=lcov ava",
-    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
+    "test": "nyc --reporter=lcov ava"
   },
   "repository": {
     "type": "git",
