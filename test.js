@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import test from 'ava'
+const test = require('ava')
 
 let { sro2syllabics, syllabics2sro } = require('./cree-sro-syllabics')
 
