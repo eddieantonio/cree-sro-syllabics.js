@@ -147,6 +147,15 @@ test('version number consistency', t => {
 test(convertRoundTrip, 'ikw', 'ᐃᐠᐤ')
 test(convertRoundTrip, 'pokw', 'ᐳᐠᐤ')
 
+test('hk option', t => {
+  let word = "Maskwacîsihk"
+  t.is(sro2syllabics(word, { finalHK: "hk" }), "ᒪᐢᑿᒌᓯᐦᐠ")
+  t.is(sro2syllabics(word, { finalHK: "x" }), "ᒪᐢᑿᒌᓯᕽ")
+  t.is(sro2syllabics(word), "ᒪᐢᑿᒌᓯᕽ")
+
+  t.throws(() => sro2syllabics(word, { finalHK: "xk"}))
+})
+
 /* ***************************** Test Macros ***************************** */
 
 /**
