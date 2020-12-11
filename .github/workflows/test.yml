@@ -1,0 +1,25 @@
+name: test
+on: [push, pull_request]
+env:
+  CI: true
+jobs:
+  test:
+    name: "Test on Node.JS ${{ matrix.node-version }}"
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node-version: [10, 12, 14]
+        os: [ubuntu-18.04, ubuntu-20.04, macos-10.15]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@2
+      - name: Install Node.JS ${{ matrix.node-version }}
+        uses: actions/setup-node@1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install
+        run: npm install
+      - name: Test
+        run: npm test
+      - name: Upload coverage
+        run: npm run report-coverage
