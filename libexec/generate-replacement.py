@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: UTF-8 -*-
-
 """
 Generates a JavaScript object of decomposed characters to their NFC normalized
 variants.
