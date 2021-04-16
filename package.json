@@ -1,6 +1,6 @@
 {
   "name": "cree-sro-syllabics",
-  "version": "2020.12.11",
+  "version": "2021.4.16",
   "description": "Convert Western Cree SRO to syllabics",
   "main": "cree-sro-syllabics.js",
   "scripts": {
@@ -22,7 +22,6 @@
     "url": "https://github.com/eddieantonio/cree-sro-syllabics.js/issues"
   },
   "homepage": "https://github.com/eddieantonio/cree-sro-syllabics.js#readme",
-  "dependencies": {},
   "devDependencies": {
     "ava": "^3.14.0",
     "codecov": "^3.8.1",
