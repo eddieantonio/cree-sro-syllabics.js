@@ -16,8 +16,8 @@
     "sro",
     "nêhiyawêwin"
   ],
-  "author": "Eddie Antonio Santos (easantos@ualberta.ca)",
-  "license": "AGPL-3.0",
+  "author": "Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/eddieantonio/cree-sro-syllabics.js/issues"
   },
