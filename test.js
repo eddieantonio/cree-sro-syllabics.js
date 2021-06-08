@@ -95,8 +95,8 @@ test(convertSemiRoundTripWithMacrons, 'nampithi-sīpīhk', 'ᓇᒼᐱᖨ ᓰ�
 test(convertSemiRoundTripWithMacrons, 'mithomon', 'ᒥᖪᒧᐣ')
 test(convertSemiRoundTripWithMacrons, 'namōtha', 'ᓇᒨᖬ')
 test(convertSemiRoundTripWithMacrons, 'thāhkan', 'ᖭᐦᑲᐣ')
-test(convertSemiRoundTripWithMacrons, 'namēpith', 'ᓇᒣᐱᖮ')
-test(convertSemiRoundTripWithMacrons, 'thē thi tho tha thī thō thā', 'ᖧ ᖨ ᖪ ᖬ ᖩ ᖫ ᖭ')
+test(convertSemiRoundTripWithMacrons, 'namēpith', 'ᓇᒣᐱᙾ')
+test(convertSemiRoundTripWithMacrons, 'thē thi tho tha thī thō thā āth', 'ᖧ ᖨ ᖪ ᖬ ᖩ ᖫ ᖭ ᐋᙾ')
 
 /* Test th-dialect (thwV) */
 test(convertSemiRoundTripWithMacrons, 'mithwāsin', 'ᒥᙽᓯᐣ')
