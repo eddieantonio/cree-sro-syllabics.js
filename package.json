@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/eddieantonio/cree-sro-syllabics.js#readme",
   "devDependencies": {
-    "ava": "^3.14.0",
+    "ava": "^5.1.1",
     "codecov": "^3.8.1",
     "nyc": "^15.1.0"
   },
