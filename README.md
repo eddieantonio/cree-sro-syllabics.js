@@ -80,6 +80,37 @@ CreeSROSyllabics.sro2syllabics("tân'si")
 
 `options`, if supplied, is an object containing the following options:
 
+#### `options.dialect`
+
+(default: `'y'`)
+
+Affects the conversion of <ý>.  Supports the following dialects:
+
+ - `'y'` for Plains Cree (ISO 636-3: `crk`)
+ - `'th'` for Woods Cree (ISO 636-3: `cwd`)
+ - `'n'` for Swampy Cree (ISO 636-3: `csw`)
+
+Plains Cree:
+
+```javascript
+CreeSROSyllabics.sro2syllabics("nehiýaw", { dialect: "y" })
+// returns "ᓀᐦᐃᔭᐤ"
+```
+
+Woods Cree (note: this option does **not** convert "i" series syllabics to "e" series):
+
+```javascript
+CreeSROSyllabics.sro2syllabics("nehiýaw", { dialect: "th" })
+// returns "ᓀᐦᐃᖬᐤ"
+```
+
+Swampy Cree:
+
+```javascript
+CreeSROSyllabics.sro2syllabics("nehiýaw", { dialect: "y" })
+// returns "ᓀᐦᐃᓇᐤ"
+```
+
 #### `options.hyphens`
 
 What character to use as hyphens. Defaults to `U+202F NARROW NO-BREAK
@@ -186,5 +217,6 @@ License
 -------
 
 Copyright © 2018–2021 National Research Council Canada.
+Copyright © 2022–2026 Eddie Antonio Santos.
 
 Licensed under the MIT license.
