@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 Generate RegExps for use in cree-syllabics-sro.js
 
@@ -8,13 +10,13 @@ import re
 
 # Derived from
 # https://github.com/eddieantonio/cree-sro-syllabics/tree/v2018.11.08
-CONSONANT = "[ptkcshmnyw]|th"
+CONSONANT = "[ptkcshmnyýw]|th"
 STRICT_VOWEL = "[êioaîôâ]"
 VOWEL = f"{STRICT_VOWEL}|[eēī'’ōā]"
 
 # Match an SRO syllable.
 sro_pattern = re.compile(
-    fr"""
+    rf"""
     # A syllable that should be joined under the sandhi rule:
     # We're setting this up so that the onset (consonant and optional w) can
     # be glued together with the vowel. The parts are joined to
@@ -40,6 +42,7 @@ sro_pattern = re.compile(
     nê |ni |no |na |nî |nô |nâ |nwê |nwa           |nwâ           |n |
     sê |si |so |sa |sî |sô |sâ |swê |swi |swo |swa |swî |swô |swâ |s |
     yê |yi |yo |ya |yî |yô |yâ |ywê |ywi |ywo |ywa |ywî |ywô |ywâ |y |
+    ýê |ýi |ýo |ýa |ýî |ýô |ýâ |ýwê |ýwi |ýwo |ýwa |ýwî |ýwô |ýwâ |ý |
     h|l|r|
     ê|i|î|o|ô|a|â|
     -
@@ -58,7 +61,7 @@ sro_pattern = re.compile(
 # For more information, see:
 # https://en.wikipedia.org/wiki/Plains_Cree#Phonotactics
 WORD_INITIAL = r"""
-    (?:[ptkcmnsyh]|th)w? |    # consonants that allow 'w' after
+    (?:[ptkcmnsyýh]|th)w? |    # consonants that allow 'w' after
     [rl] |  # consonants that don't
     w |
     # can start with no consonant.
@@ -68,13 +71,13 @@ WORD_MEDIAL = r"""
     # TODO: there should be a constraint that the constants cannot be
     # duplicated, but capturing groups won't work if these regex
     # snippets are concatenated into bigger regexes.
-    (?:[hsmnwy]|th)? (?:[ptkcmnsyh]|th) w? |
+    (?:[hsmnwyý]|th)? (?:[ptkcmnsyýh]|th) w? |
     w |
     [yw]? [rl]  # for loan words
 """
 
 WORD_FINAL = r"""
-    [hs]? (?:[ptcksmnwy]|th) |
+    [hs]? (?:[ptcksmnwyý]|th) |
     h |
     kw | # Woods Cree -kw abbreviations
     [yw]? [rl] | # for loan word
@@ -83,8 +86,8 @@ WORD_FINAL = r"""
 
 # NOTE: VOWEL is defined way near the top of the file.
 
-CODA = "th|[hs]?[ptkcmn]|h|s|y|w"
-MORPHEME = fr"""
+CODA = "th|[hs]?[ptkcmn]|h|s|y|ý|w"
+MORPHEME = rf"""
     (?:{WORD_INITIAL}) (?:{VOWEL})
         (?: (?:{WORD_MEDIAL}) (?:{VOWEL}) )*
     (?:{WORD_FINAL})
@@ -105,7 +108,7 @@ END_WORD = r"""
 )
 """
 
-WORD = fr"""
+WORD = rf"""
     # CODA before the hyphen to account for Sandhi.
     # It's possible to accept TWO codas using this formulation, but
     # I think that loss of precision is okay.
@@ -226,7 +229,7 @@ def uniescape(text: str) -> str:
         assert code_point <= 0xFFFF
         return f"\\u{code_point:04X}"
 
-    return re.sub("[^\u0020-\u007F]", escape, text)
+    return re.sub("[^\u0020-\u007f]", escape, text)
 
 
 if __name__ == "__main__":
