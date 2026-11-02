@@ -38,7 +38,7 @@
   const DEFAULT_SRO2SYLLABICS_OPTIONS = {
     hyphens: '\u202f', // U+202F NARROW NO-BREAK SPACE, preferred by syllabics writers
     finalHK: 'x', // by default use ᕽ as the word-final hk. Maskwacîs uses ᐦᐠ instead.
-    // TODO: variety
+    dialect: 'y', // only relevant when <ý> is present
   }
   const DEFAULT_SYLLABICS2SRO_OPTIONS = {
     longAccents: 'circumflexes'
@@ -109,7 +109,6 @@
   function sro2syllabics (sro, options) {
     options = options || {}
     const hyphens = options.hyphens || DEFAULT_SRO2SYLLABICS_OPTIONS.hyphens
-    const reflexOfý = 'y';
 
     let hk;
     switch (options.finalHK) {
@@ -126,11 +125,19 @@
         throw new Error('final hk must be either "hk" or "x"')
     }
 
-    // TODO: variety
+    const reflexOfý = options.dialect || DEFAULT_SRO2SYLLABICS_OPTIONS.dialect
+    switch (reflexOfý) {
+      case 'y':
+      case 'n':
+      case 'th':
+        break
+      default:
+        throw new Error('dialect must be "y", "n", or "th"')
+    }
 
     // Instead of using sro2syllabicsLookup directly, create a customizable
     // lookup here that fallsback to sro2syllabicsLookup.
-    let lookup = Object.create(sro2syllabicsLookup)
+    const lookup = Object.create(sro2syllabicsLookup)
     // The customization is what the hyphen should be converted to:
     lookup['-'] = hyphens
 
