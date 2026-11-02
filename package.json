@@ -1,6 +1,6 @@
 {
   "name": "cree-sro-syllabics",
-  "version": "2021.6.8",
+  "version": "2026.11.2",
   "description": "Convert Western Cree SRO to syllabics",
   "main": "cree-sro-syllabics.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "sro",
     "nêhiyawêwin"
   ],
-  "author": "Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>",
+  "author": "Eddie Antonio Santos <cree@hello.eddieantonio.ca>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/eddieantonio/cree-sro-syllabics.js/issues"
