@@ -139,14 +139,33 @@ test('hk option', t => {
   t.throws(() => sro2syllabics(word, { finalHK: "xk"}))
 })
 
-/* <ý> in Plains Cree mode */
+/* tests for converting <ý> */
 test('ý in Plains Cree', t => {
   const composed = "nehiýaw"
   const decomposed = composed.normalize("NFD")
-  t.is(decomposed.length, composed.length + 1)
 
   t.is(sro2syllabics(composed), "ᓀᐦᐃᔭᐤ")
   t.is(sro2syllabics(decomposed), "ᓀᐦᐃᔭᐤ")
+  t.is(sro2syllabics(composed, { dialect: 'y' }), "ᓀᐦᐃᔭᐤ")
+  t.is(sro2syllabics(decomposed, { dialect: 'y' }), "ᓀᐦᐃᔭᐤ")
+})
+
+test('ý in Swampy Cree', t => {
+  const composed = "nehiýaw"
+  const decomposed = composed.normalize("NFD")
+
+  t.is(sro2syllabics(composed, { dialect: 'n' }), "ᓀᐦᐃᓇᐤ")
+  t.is(sro2syllabics(decomposed, { dialect: 'n' }), "ᓀᐦᐃᓇᐤ")
+})
+
+
+test('ý in Woods Cree', t => {
+  // TODO: should there be a breaking change for <î> -> <ê> syllabics?
+  const composed = "nêhiýaw"
+  const decomposed = composed.normalize("NFD")
+
+  t.is(sro2syllabics(composed, { dialect: 'th' }), "ᓀᐦᐃᖬᐤ")
+  t.is(sro2syllabics(decomposed, { dialect: 'th' }), "ᓀᐦᐃᖬᐤ")
 })
 
 /* ***************************** Test Macros ***************************** */
