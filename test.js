@@ -131,12 +131,22 @@ test(convertRoundTrip, 'ikw', 'ᐃᐠᐤ')
 test(convertRoundTrip, 'pokw', 'ᐳᐠᐤ')
 
 test('hk option', t => {
-  let word = "Maskwacîsihk"
+  const word = "Maskwacîsihk"
   t.is(sro2syllabics(word, { finalHK: "hk" }), "ᒪᐢᑿᒌᓯᐦᐠ")
   t.is(sro2syllabics(word, { finalHK: "x" }), "ᒪᐢᑿᒌᓯᕽ")
   t.is(sro2syllabics(word), "ᒪᐢᑿᒌᓯᕽ")
 
   t.throws(() => sro2syllabics(word, { finalHK: "xk"}))
+})
+
+/* <ý> in Plains Cree mode */
+test('ý in Plains Cree', t => {
+  const composed = "nehiýaw"
+  const decomposed = composed.normalize("NFD")
+  t.is(decomposed.length, composed.length + 1)
+
+  t.is(sro2syllabics(composed), "ᓀᐦᐃᔭᐤ")
+  t.is(sro2syllabics(decomposed), "ᓀᐦᐃᔭᐤ")
 })
 
 /* ***************************** Test Macros ***************************** */
