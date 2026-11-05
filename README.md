@@ -216,7 +216,7 @@ The module's current version, as a string.
 License
 -------
 
-Copyright © 2018–2021 National Research Council Canada.
+Copyright © 2018–2021 National Research Council Canada.<br/>
 Copyright © 2022–2026 Eddie Antonio Santos.
 
 Licensed under the MIT license.

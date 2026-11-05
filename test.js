@@ -168,6 +168,23 @@ test('ý in Woods Cree', t => {
   t.is(sro2syllabics(decomposed, { dialect: 'th' }), "ᓀᐦᐃᖬᐤ")
 })
 
+test('ń', t => {
+  const composed = "nehińaw" // TODO: I don't actually know any real use case of this
+  const decomposed = composed.normalize("NFD")
+
+  t.is(sro2syllabics(composed), "ᓀᐦᐃᓇᐤ")
+  t.is(sro2syllabics(decomposed), "ᓀᐦᐃᓇᐤ")
+
+  // It doesn't matter which dialect is used:
+  t.is(sro2syllabics(composed, { dialect: "y" }), "ᓀᐦᐃᓇᐤ")
+  t.is(sro2syllabics(decomposed, { dialect: "y" }), "ᓀᐦᐃᓇᐤ")
+  t.is(sro2syllabics(composed, { dialect: "th" }), "ᓀᐦᐃᓇᐤ")
+  t.is(sro2syllabics(decomposed, { dialect: "th" }), "ᓀᐦᐃᓇᐤ")
+  t.is(sro2syllabics(composed, { dialect: "n" }), "ᓀᐦᐃᓇᐤ")
+  t.is(sro2syllabics(decomposed, { dialect: "n" }), "ᓀᐦᐃᓇᐤ")
+})
+
+
 /* ***************************** Test Macros ***************************** */
 
 /**

@@ -18,7 +18,7 @@ for base, accent in product(vowels, accents):
     assert len(composed) == 1
     print(f"  {sequence!a}: {composed!a},")
 
-for composed in "Ýý":
+for composed in "ÝýŃń":
     sequence = normalize("NFD", composed)
     assert len(composed) == 1
     print(f"  {sequence!a}: {composed!a},")

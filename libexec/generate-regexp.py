@@ -10,7 +10,7 @@ import re
 
 # Derived from
 # https://github.com/eddieantonio/cree-sro-syllabics/tree/v2018.11.08
-CONSONANT = "[ptkcshmnyýw]|th"
+CONSONANT = "[ptkcshmnńyýw]|th"
 STRICT_VOWEL = "[êioaîôâ]"
 VOWEL = f"{STRICT_VOWEL}|[eēī'’ōā]"
 
@@ -40,6 +40,7 @@ sro_pattern = re.compile(
     cê |ci |co |ca |cî |cô |câ |cwê |cwi |cwo |cwa |cwî |cwô |cwâ |c |
     mê |mi |mo |ma |mî |mô |mâ |mwê |mwi |mwo |mwa |mwî |mwô |mwâ |m |
     nê |ni |no |na |nî |nô |nâ |nwê |nwa           |nwâ           |n |
+    ńê |ńi |ńo |ńa |ńî |ńô |ńâ |ńwê |ńwa           |ńwâ           |ń |
     sê |si |so |sa |sî |sô |sâ |swê |swi |swo |swa |swî |swô |swâ |s |
     yê |yi |yo |ya |yî |yô |yâ |ywê |ywi |ywo |ywa |ywî |ywô |ywâ |y |
     ýê |ýi |ýo |ýa |ýî |ýô |ýâ |ýwê |ýwi |ýwo |ýwa |ýwî |ýwô |ýwâ |ý |
@@ -61,7 +62,7 @@ sro_pattern = re.compile(
 # For more information, see:
 # https://en.wikipedia.org/wiki/Plains_Cree#Phonotactics
 WORD_INITIAL = r"""
-    (?:[ptkcmnsyýh]|th)w? |    # consonants that allow 'w' after
+    (?:[ptkcmnńsyýh]|th)w? |    # consonants that allow 'w' after
     [rl] |  # consonants that don't
     w |
     # can start with no consonant.
@@ -71,13 +72,13 @@ WORD_MEDIAL = r"""
     # TODO: there should be a constraint that the constants cannot be
     # duplicated, but capturing groups won't work if these regex
     # snippets are concatenated into bigger regexes.
-    (?:[hsmnwyý]|th)? (?:[ptkcmnsyýh]|th) w? |
+    (?:[hsmnńwyý]|th)? (?:[ptkcmnńsyýh]|th) w? |
     w |
     [yw]? [rl]  # for loan words
 """
 
 WORD_FINAL = r"""
-    [hs]? (?:[ptcksmnwyý]|th) |
+    [hs]? (?:[ptcksmnńwyý]|th) |
     h |
     kw | # Woods Cree -kw abbreviations
     [yw]? [rl] | # for loan word
@@ -86,7 +87,7 @@ WORD_FINAL = r"""
 
 # NOTE: VOWEL is defined way near the top of the file.
 
-CODA = "th|[hs]?[ptkcmn]|h|s|y|ý|w"
+CODA = "th|[hs]?[ptkcmnń]|h|s|y|ý|w"
 MORPHEME = rf"""
     (?:{WORD_INITIAL}) (?:{VOWEL})
         (?: (?:{WORD_MEDIAL}) (?:{VOWEL}) )*
